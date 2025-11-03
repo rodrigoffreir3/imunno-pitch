@@ -47,6 +47,7 @@
             margin-right: 0.75rem;
             font-weight: 700;
         }
+        /* MODIFICAÇÃO: Melhoria na Árvore de Ataque */
         .attack-tree div {
             position: relative;
             padding-left: 20px;
@@ -97,11 +98,23 @@
                 transform: translateX(-50%) translateY(-10px);
             }
         }
+        /* ADIÇÃO: Estilo para "vs" no slide de concorrentes */
+        .vs-circle {
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: #f59e0b; /* Amarelo/Laranja */
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white overflow-hidden">
     <div id="deck-container" class="container-snap">
-        <!-- Slide 1: Capa -->
         <div id="slide1" class="slide p-8 text-center bg-cover bg-center" style="background-image: url('https://placehold.co/0f172a/38bdf8');">
              <div class="absolute inset-0 bg-gray-900/80"></div>
              <div class="relative z-10">
@@ -116,7 +129,6 @@
             </div>
         </div>
 
-        <!-- Slide 2: O Problema -->
         <div id="slide2" class="slide p-8">
             <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
                 <div class="text-center md:text-left">
@@ -147,10 +159,9 @@
                     </div>
                 </div>
             </div>
-             <div class="slide-counter text-xs text-gray-400">2 / 10</div>
+             <div class="slide-counter text-xs text-gray-400">2 / 11</div>
         </div>
 
-        <!-- Slide 3: A Oportunidade -->
         <div id="slide3" class="slide p-8">
             <div class="max-w-6xl mx-auto text-center">
                  <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">A Oportunidade</h2>
@@ -170,10 +181,9 @@
                     </div>
                  </div>
             </div>
-             <div class="slide-counter text-xs text-gray-400">3 / 10</div>
+             <div class="slide-counter text-xs text-gray-400">3 / 11</div>
         </div>
 
-        <!-- Slide 4: A Solução -->
         <div id="slide4" class="slide p-8">
             <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
                 <div>
@@ -199,10 +209,9 @@
                     </svg>
                 </div>
             </div>
-             <div class="slide-counter text-xs text-gray-400">4 / 10</div>
+             <div class="slide-counter text-xs text-gray-400">4 / 11</div>
         </div>
 
-        <!-- Slide 5: Tecnologia -->
         <div id="slide5" class="slide p-8">
             <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
                  <div>
@@ -222,6 +231,14 @@
                            <p class="font-bold text-sky-400">Alta Performance: &lt; 0.5% CPU/RAM</p>
                            <p class="text-sm text-gray-300">Segurança robusta que não impacta o desempenho do servidor, validado em testes de estresse.</p>
                         </div>
+                        
+                        <div class="mt-6">
+                            <a href="https://youtu.be/RU5mggiuOT0" target="_blank" class="brand-bg-gradient text-white font-bold py-3 px-6 rounded-lg inline-flex items-center space-x-2 hover:opacity-90 transition-opacity">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>Veja a Causalidade em Ação (Demo)</span>
+                            </a>
+                        </div>
+
                     </div>
                  </div>
                  <div class="glass-bg p-6 rounded-2xl font-mono text-sm">
@@ -257,33 +274,70 @@
                     </div>
                  </div>
             </div>
-             <div class="slide-counter text-xs text-gray-400">5 / 10</div>
+             <div class="slide-counter text-xs text-gray-400">5 / 11</div>
         </div>
 
-        <!-- Slide 6: Estágio -->
-        <div id="slide6" class="slide p-8 text-center">
-            <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">Estágio do Projeto</h2>
-            <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">Tecnologia Validada em Campo de Batalha</p>
-            <p class="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">O Imunno não é uma teoria. É uma realidade funcional pronta para os primeiros pilotos.</p>
-            <div class="mt-12 max-w-2xl mx-auto space-y-4">
-                <div class="glass-bg p-6 rounded-lg text-left flex items-center space-x-4">
-                    <svg class="w-8 h-8 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <p class="text-lg">Testes de estresse com ameaças reais concluídos com sucesso.</p>
+        <div id="slide6" class="slide p-8">
+            <div class="max-w-6xl mx-auto text-center md:text-left">
+                <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">Estágio do Projeto</h2>
+                <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">Tecnologia Validada em Campo de Batalha</p>
+                <p class="mt-4 text-lg text-gray-300 max-w-3xl mx-auto md:mx-0">O Imunno não é uma teoria. É uma realidade funcional pronta para os primeiros pilotos.</p>
+            </div>
+            <div class="mt-12 max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-4">
+                    <div class="glass-bg p-6 rounded-lg text-left flex items-center space-x-4">
+                        <svg class="w-8 h-8 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <p class="text-lg">Testes de estresse com ameaças reais concluídos com sucesso.</p>
+                    </div>
+                    <div class="glass-bg p-6 rounded-lg text-left flex items-center space-x-4">
+                        <svg class="w-8 h-8 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <p class="text-lg">Validação técnica completa da IA, causalidade e heurísticas.</p>
+                    </div>
+                    <div class="glass-bg p-6 rounded-lg text-left flex items-center space-x-4">
+                       <svg class="w-8 h-8 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                       <p class="text-lg font-bold">Produto Mínimo Viável (MVP) com tecnologia central robusta e pronta.</p>
+                    </div>
                 </div>
-                <div class="glass-bg p-6 rounded-lg text-left flex items-center space-x-4">
-                    <svg class="w-8 h-8 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <p class="text-lg">Validação técnica completa da IA, causalidade e heurísticas.</p>
-                </div>
-                <div class="glass-bg p-6 rounded-lg text-left flex items-center space-x-4">
-                   <svg class="w-8 h-8 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                   <p class="text-lg font-bold">Produto Mínimo Viável (MVP) com tecnologia central robusta e pronta.</p>
+                <div class="glass-bg p-4 rounded-2xl">
+                    <p class="text-sm text-gray-400 text-center mb-2">// Dashboard de Análise de Causalidade (MVP)</p>
+                    <img src="https://placehold.co/600x400/0f172a/38bdf8?text=Screenshot+do+Dashboard+Aqui" alt="Screenshot do Dashboard Imunno" class="rounded-lg">
                 </div>
             </div>
-             <div class="slide-counter text-xs text-gray-400">6 / 10</div>
+             <div class="slide-counter text-xs text-gray-400">6 / 11</div>
         </div>
         
-        <!-- Slide 7: Mercado -->
         <div id="slide7" class="slide p-8">
+            <div class="max-w-6xl mx-auto text-center">
+                 <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">O Cenário Atual</h2>
+                 <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">Por que o Imunno Vence?</p>
+                 <p class="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">Concorrentes focam em "o quê". Nós focamos em "como" e "por quê".</p>
+                 
+                 <div class="mt-12 grid md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
+                    <div class="glass-bg p-8 rounded-2xl text-left">
+                        <h3 class="text-2xl font-bold text-red-400">Defesas Tradicionais</h3>
+                        <p class="text-sm text-gray-400">(Wordfence, Sucuri, etc.)</p>
+                        <div class="mt-6 space-y-4">
+                            <p class="flex items-start"><span class="text-red-400 font-bold mr-3">✗</span> <span><span class="font-bold">Reativas:</span> Baseadas em assinaturas (listas de malwares conhecidos).</span></p>
+                            <p class="flex items-start"><span class="text-red-400 font-bold mr-3">✗</span> <span><span class="font-bold">Cegas a Zero-Day:</span> Falham em detectar ataques "pacientes" ou que usam arquivos legítimos (como o `wp-config.php`).</span></p>
+                            <p class="flex items-start"><span class="text-red-400 font-bold mr-3">✗</span> <span><span class="font-bold">Falsos Positivos:</span> Geram muito ruído ao bloquear ações legítimas de plugins.</span></p>
+                        </div>
+                    </div>
+
+                    <div class="glass-bg p-8 rounded-2xl text-left border-2 border-sky-400 shadow-2xl shadow-sky-500/10">
+                        <h3 class="text-2xl font-bold brand-gradient">Imunno System</h3>
+                        <p class="text-sm text-gray-400">(Imunidade Adaptativa)</p>
+                        <div class="mt-6 space-y-4">
+                            <p class="flex items-start"><span class="text-sky-400 font-bold mr-3">✓</span> <span><span class="font-bold">Adaptativo:</span> Focado em comportamento e **análise de causalidade**.</span></p>
+                            <p class="flex items-start"><span class="text-sky-400 font-bold mr-3">✓</span> <span><span class="font-bold">Pega Zero-Day:</span> Conecta eventos separados no tempo (arquivo criado hoje, executado amanhã) para revelar o ataque.</span></p>
+                            <p class="flex items-start"><span class="text-sky-400 font-bold mr-3">✓</span> <span><span class="font-bold">Preciso:</span> Entende o contexto, reduzindo falsos positivos e neutralizando a causa raiz.</span></p>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+             <div class="slide-counter text-xs text-gray-400">7 / 11</div>
+        </div>
+
+        <div id="slide8" class="slide p-8">
              <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
                 <div>
                      <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">Mercado e Alcance</h2>
@@ -305,61 +359,52 @@
                     </div>
                 </div>
              </div>
-             <div class="slide-counter text-xs text-gray-400">7 / 10</div>
+             <div class="slide-counter text-xs text-gray-400">8 / 11</div>
         </div>
 
-        <!-- Slide 8: Clientes e Modelo -->
-        <div id="slide8" class="slide p-8 text-center">
+        <div id="slide9" class="slide p-8 text-center">
             <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">Clientes e Modelo de Negócio</h2>
             <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">Protegendo a Infraestrutura da Web com um Modelo B2B Escalável</p>
             <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <div class="glass-bg p-8 rounded-2xl">
                     <svg class="w-12 h-12 mx-auto text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path></svg>
                     <h3 class="mt-4 font-bold text-lg">Principal: Provedores</h3>
-                    <p class="mt-2 text-sm text-gray-300">Parcerias estratégicas com empresas de hospedagem e Data Centers para distribuição em massa.</p>
+                    <p class="mt-2 text-sm text-gray-300">Parcerias com empresas de hospedagem para distribuição em massa. <span class="font-bold text-sky-300">Valor: Reduz tickets de suporte ('site hackeado') e cria nova receita premium.</span></p>
                 </div>
                 <div class="glass-bg p-8 rounded-2xl">
                     <svg class="w-12 h-12 mx-auto text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                     <h3 class="mt-4 font-bold text-lg">Secundário: Agências</h3>
-                    <p class="mt-2 text-sm text-gray-300">Empresas com servidores próprios, agências de desenvolvimento e freelancers que gerenciam múltiplos clientes.</p>
+                    <p class="mt-2 text-sm text-gray-300">Agências de dev e freelancers que gerenciam múltiplos clientes. <span class="font-bold text-sky-300">Valor: Protege o portfólio, evita retrabalho e agrega valor ao contrato de manutenção.</span></p>
                 </div>
                 <div class="glass-bg p-8 rounded-2xl">
                     <svg class="w-12 h-12 mx-auto text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     <h3 class="mt-4 font-bold text-lg">Modelo: SaaS</h3>
-                    <p class="mt-2 text-sm text-gray-300">O Imunno será oferecido como um serviço de segurança premium, gerando receita recorrente e previsível.</p>
+                    <p class="mt-2 text-sm text-gray-300">Serviço de segurança premium (B2B), gerando receita recorrente e previsível através dos nossos parceiros.</p>
                 </div>
             </div>
-            <div class="slide-counter text-xs text-gray-400">8 / 10</div>
+            <div class="slide-counter text-xs text-gray-400">9 / 11</div>
         </div>
 
-        <!-- Slide 9: O Time -->
-        <div id="slide9" class="slide p-8 text-center">
+        <div id="slide10" class="slide p-8 text-center">
              <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">O Time</h2>
              <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">Fundador e Arquiteto da Solução</p>
              <div class="mt-12 max-w-md mx-auto glass-bg p-8 rounded-2xl">
-                <!-- 
-                  COMO ADICIONAR SUA FOTO:
-                  1. Faça o upload da sua foto em um site como https://imgur.com/upload
-                  2. Clique com o botão direito na imagem enviada e escolha "Copiar endereço da imagem".
-                  3. Cole o link que você copiou abaixo, substituindo o link existente.
-                -->
                 <img class="w-32 h-32 rounded-full mx-auto object-cover" src="https://i.imgur.com/RAkM0ir.jpeg">
                 <h3 class="mt-6 text-2xl font-bold">Rodrigo Freire</h3>
                 <p class="mt-2 text-sky-400">Fundador & Arquiteto de Software</p>
                 <p class="mt-4 text-gray-300 text-left">Obsessivo por criar uma solução de segurança de nível mundial, com a simplicidade e o custo adaptados à realidade brasileira. Desenvolvi toda a tecnologia central do Imunno, da IA à análise de causalidade, com foco em máxima eficiência e robustez.</p>
              </div>
-             <div class="slide-counter text-xs text-gray-400">9 / 10</div>
+             <div class="slide-counter text-xs text-gray-400">10 / 11</div>
         </div>
         
-        <!-- Slide 10: O Pedido -->
-        <div id="slide10" class="slide p-8 text-center bg-cover bg-center" style="background-image: url('https://placehold.co/0f172a/3b82f6');">
+        <div id="slide11" class="slide p-8 text-center bg-cover bg-center" style="background-image: url('https://placehold.co/0f172a/3b82f6');">
             <div class="absolute inset-0 bg-gray-900/80"></div>
             <div class="relative z-10">
                 <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">O Próximo Passo</h2>
                 <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">O Pedido para Proteger a Web Brasileira</p>
                 <div class="mt-8 max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
                     <div class="glass-bg p-8 rounded-2xl text-left">
-                        <h3 class="text-2xl font-bold brand-gradient">Buscamos: [R$ 350.000]</h3>
+                        <h3 class="text-2xl font-bold brand-gradient">Buscamos: R$ 350.000</h3>
                         <p class="mt-4 text-gray-300">Para transformar nosso MVP validado em um produto de mercado em 12 meses.</p>
                     </div>
                     <div class="text-left space-y-2">
@@ -376,7 +421,7 @@
                     </p>
                 </div>
             </div>
-            <div class="slide-counter text-xs text-gray-400">10 / 10</div>
+            <div class="slide-counter text-xs text-gray-400">11 / 11</div>
         </div>
 
     </div>
@@ -384,8 +429,6 @@
     <script>
         // Script simples para indicar slide atual, se necessário no futuro.
         // Por agora, o scroll snap cuida da navegação.
-    </script>
+    </document>
 </body>
 </html>
-
-
