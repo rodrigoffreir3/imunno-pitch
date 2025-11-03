@@ -109,6 +109,49 @@
             font-size: 1.25rem;
             color: #f59e0b; /* Amarelo/Laranja */
         }
+        
+        /* ==================================================================
+        == A MÁGICA PARA IMPRESSÃO EM PDF ACONTECE AQUI ==
+        ==================================================================
+        */
+        @media print {
+            /* Força o navegador a imprimir cores de fundo e texto */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            /* Reseta o container de scroll-snap para impressão */
+            body, html {
+                overflow: visible !important;
+                height: auto;
+            }
+            .container-snap {
+                overflow-y: visible;
+                height: auto;
+                scroll-snap-type: none;
+            }
+            
+            /* Garante que cada slide seja uma página */
+            .slide {
+                height: 100vh; /* Ocupa a altura da "tela" de impressão */
+                page-break-after: always; /* Força uma nova página após cada slide */
+                display: flex; /* Mantém o centeio */
+                align-items: center; /* Centraliza verticalmente na página PDF */
+                padding: 2rem; /* Adiciona uma margem de segurança */
+            }
+
+            /* Oculta elementos inúteis no PDF */
+            .arrow-down, 
+            .slide-counter {
+                display: none !important;
+            }
+
+            /* Garante que o último slide não adicione uma página em branco */
+            .slide:last-child {
+                page-break-after: avoid;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white overflow-hidden">
@@ -229,6 +272,14 @@
                            <p class="font-bold text-sky-400">Alta Performance: &lt; 0.5% CPU/RAM</p>
                            <p class="text-sm text-gray-300">Segurança robusta que não impacta o desempenho do servidor, validado em testes de estresse.</p>
                         </div>
+                        
+                        <div class="mt-6">
+                            <a href="https://youtu.be/RU5mggiuOT0" target="_blank" class="brand-bg-gradient text-white font-bold py-3 px-6 rounded-lg inline-flex items-center space-x-2 hover:opacity-90 transition-opacity">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>Veja a Causalidade em Ação (Demo Anterior)</span>
+                            </a>
+                        </div>
+
                     </div>
                  </div>
                  <div class="glass-bg p-6 rounded-2xl font-mono text-sm">
@@ -351,3 +402,81 @@
                          <p class="text-sm text-gray-300">A demanda por soluções que neutralizem ameaças zero-day e sejam acessíveis a empresas de todos os portes é clara e urgente.</p>
                     </div>
                      <div class="glass-bg p-6 rounded-2xl">
+                         <h3 class="font-bold">Escalabilidade</h3>
+                         <p class="text-sm text-gray-300">Nossa arquitetura foi projetada para ser adaptável, permitindo a expansão futura para outros ambientes web além do WordPress.</p>
+                    </div>
+                </div>
+             </div>
+             <div class="slide-counter text-xs text-gray-400">8 / 11</div>
+        </div>
+
+        <div id="slide9" class="slide p-8 text-center">
+            <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">Clientes e Modelo de Negócio</h2>
+            <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">Protegendo a Infraestrutura da Web com um Modelo B2B Escalável</p>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="glass-bg p-8 rounded-2xl">
+                    <svg class="w-12 h-12 mx-auto text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                    <h3 class="mt-4 font-bold text-lg">Principal: Provedores</h3>
+                    <p class="mt-2 text-sm text-gray-300">Parcerias com empresas de hospedagem para distribuição em massa. <span class="font-bold text-sky-300">Valor: Reduz tickets de suporte ('site hackeado') e cria nova receita premium.</span></p>
+                </div>
+                <div class="glass-bg p-8 rounded-2xl">
+                    <svg class="w-12 h-12 mx-auto text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <h3 class="mt-4 font-bold text-lg">Secundário: Agências</h3>
+                    <p class="mt-2 text-sm text-gray-300">Agências de dev e freelancers que gerenciam múltiplos clientes. <span class="font-bold text-sky-300">Valor: Protege o portfólio, evita retrabalho e agrega valor ao contrato de manutenção.</span></p>
+                </div>
+                <div class="glass-bg p-8 rounded-2xl">
+                    <svg class="w-12 h-12 mx-auto text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <h3 class="mt-4 font-bold text-lg">Modelo: SaaS</h3>
+                    <p class="mt-2 text-sm text-gray-300">Serviço de segurança premium (B2B), gerando receita recorrente e previsível através dos nossos parceiros.</p>
+                </div>
+            </div>
+            <div class="slide-counter text-xs text-gray-400">9 / 11</div>
+        </div>
+
+        <div id="slide10" class="slide p-8 text-center">
+             <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">O Time</h2>
+             <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">Fundador e Arquiteto da Solução</p>
+             <div class="mt-12 max-w-md mx-auto glass-bg p-8 rounded-2xl">
+                <img class="w-32 h-32 rounded-full mx-auto object-cover" src="https://i.imgur.com/RAkM0ir.jpeg">
+                <h3 class="mt-6 text-2xl font-bold">Rodrigo Freire</h3>
+                <p class="mt-2 text-sky-400">Fundador & Arquiteto de Software</p>
+                <p class="mt-4 text-gray-300 text-left">Obsessivo por criar uma solução de segurança de nível mundial, com a simplicidade e o custo adaptados à realidade brasileira. Desenvolvi toda a tecnologia central do Imunno, da IA à análise de causalidade, com foco em máxima eficiência e robustez.</p>
+             </div>
+             <div class="slide-counter text-xs text-gray-400">10 / 11</div>
+        </div>
+        
+        <div id="slide11" class="slide p-8 text-center bg-cover bg-center" style="background-image: url('https://placehold.co/0f172a/3b82f6');">
+            <div class="absolute inset-0 bg-gray-900/80"></div>
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">O Próximo Passo</h2>
+                <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">O Pedido para Proteger a Web Brasileira</p>
+                <div class="mt-8 max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                    <div class="glass-bg p-8 rounded-2xl text-left">
+                        <h3 class="text-2xl font-bold brand-gradient">Buscamos: R$ 350.000</h3>
+                        <p class="mt-4 text-gray-300">Para transformar nosso MVP validado em um produto de mercado em 12 meses.</p>
+                    </div>
+                    <div class="text-left space-y-2">
+                        <p class="bullet-point">Finalizar a Dashboard administrativa</p>
+                        <p class="bullet-point">Criar um processo de instalação simplificado</p>
+                        <p class="bullet-point">Executar os primeiros projetos-piloto</p>
+                        <p class="bullet-point">Formar a equipe inicial de negócios</p>
+                    </div>
+                </div>
+                <div class="mt-12">
+                    <p class="text-2xl font-bold">Junte-se a nós na missão de tornar a internet mais segura.</p>
+                    <p class="mt-4 text-lg brand-bg-gradient text-white font-bold py-3 px-6 rounded-lg inline-block">E-mail: rodrigofreire.corporativo@gmail.com
+                        WhatsApp: (69) 9 9278-2919
+                    </p>
+                </div>
+            </div>
+            <div class="slide-counter text-xs text-gray-400">11 / 11</div>
+        </div>
+
+    </div>
+
+    <script>
+        // Script simples para indicar slide atual, se necessário no futuro.
+        // Por agora, o scroll snap cuida da navegação.
+    </script>
+</body>
+</html>
