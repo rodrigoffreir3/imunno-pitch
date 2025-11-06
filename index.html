@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -27,12 +27,24 @@
             overflow-y: scroll;
             height: 100vh;
         }
-        .glass-bg {
-            background: rgba(17, 24, 39, 0.6);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        /* ==================================================================
+        == NOVOS ESTILOS "BIG TECH" ==
+        ==================================================================
+        */
+        
+        /* O "Card" moderno que substitui o glass-bg */
+        .card-bg {
+            background-color: #020617; /* bg-slate-950 */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
+            border-radius: 1rem; /* rounded-xl */
         }
+        .card-bg-darker {
+             background-color: rgba(2, 6, 23, 0.5); /* bg-slate-950/50 */
+             border: 1px solid rgba(255, 255, 255, 0.1);
+             border-radius: 1rem;
+        }
+
         .brand-gradient {
             background: linear-gradient(90deg, #38bdf8, #3b82f6);
             -webkit-background-clip: text;
@@ -107,21 +119,15 @@
             justify-content: center;
             font-weight: 900;
             font-size: 1.25rem;
-            color: #f59e0b; /* Amarelo/Laranja */
+            color: #f59e0b;
         }
         
-        /* ==================================================================
-        == A MÁGICA PARA IMPRESSÃO EM PDF ACONTECE AQUI ==
-        ==================================================================
-        */
+        /* Regras de Impressão para PDF */
         @media print {
-            /* Força o navegador a imprimir cores de fundo e texto */
             * {
                 -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
+                print-color-adjust: exact !imporant;
             }
-            
-            /* Reseta o container de scroll-snap para impressão */
             body, html {
                 overflow: visible !important;
                 height: auto;
@@ -131,39 +137,32 @@
                 height: auto;
                 scroll-snap-type: none;
             }
-            
-            /* Garante que cada slide seja uma página */
             .slide {
-                height: 100vh; /* Ocupa a altura da "tela" de impressão */
-                page-break-after: always; /* Força uma nova página após cada slide */
-                display: flex; /* Mantém o centeio */
-                align-items: center; /* Centraliza verticalmente na página PDF */
-                padding: 2rem; /* Adiciona uma margem de segurança */
+                height: 100vh;
+                page-break-after: always;
+                display: flex;
+                align-items: center;
+                padding: 2rem;
             }
-
-            /* Oculta elementos inúteis no PDF */
             .arrow-down, 
             .slide-counter {
                 display: none !important;
             }
-
-            /* Garante que o último slide não adicione uma página em branco */
             .slide:last-child {
                 page-break-after: avoid;
             }
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white overflow-hidden">
+<body class="bg-black text-white overflow-hidden">
     <div id="deck-container" class="container-snap">
-        <div id="slide1" class="slide p-8 text-center bg-cover bg-center" style="background-image: url('https://placehold.co/0f172a/38bdf8');">
-             <div class="absolute inset-0 bg-gray-900/80"></div>
+        <div id="slide1" class="slide p-8 text-center">
              <div class="relative z-10">
                 <div class="mb-4">
                     <svg class="w-24 h-24 mx-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2V4" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 20V22" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 12H2" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 12H20" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.63604 5.63604L4.22183 4.22183" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.7782 19.7782L18.364 18.364" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.63604 18.364L4.22183 19.7782" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.7782 4.22183L18.364 5.63604" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
-                <h1 class="text-6xl md:text-8xl font-black tracking-tight brand-gradient">Imunno System</h1>
-                <p class="mt-6 text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">O sistema imunológico para a web. Segurança adaptativa para a era dos ataques zero-day.</p>
+                <h1 class="text-6xl md:text-8xl font-black tracking-tighter brand-gradient">Imunno System</h1>
+                <p class="mt-6 text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto tracking-tight">O sistema imunológico para a web. Segurança adaptativa para a era dos ataques zero-day.</p>
                 <div class="arrow-down mt-16">
                     <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
@@ -174,28 +173,28 @@
             <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
                 <div class="text-center md:text-left">
                     <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">O Problema</h2>
-                    <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">A Evolução das Ameaças Superou as Defesas</p>
+                    <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">A Evolução das Ameaças Superou as Defesas</p>
                 </div>
                 <div class="space-y-6">
-                    <div class="glass-bg p-6 rounded-2xl flex items-start space-x-4">
+                    <div class="card-bg p-6 flex items-start space-x-4">
                         <svg class="w-10 h-10 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                         <div>
-                            <h3 class="text-lg font-bold">Ataques mais sofisticados</h3>
-                            <p class="text-gray-300">As ameaças na web são mais organizadas, inovadoras e eficientes, superando as defesas convencionais.</p>
+                            <h3 class="text-lg font-semibold text-white">Ataques mais sofisticados</h3>
+                            <p class="text-gray-400">As ameaças na web são mais organizadas, inovadoras e eficientes, superando as defesas convencionais.</p>
                         </div>
                     </div>
-                    <div class="glass-bg p-6 rounded-2xl flex items-start space-x-4">
+                    <div class="card-bg p-6 flex items-start space-x-4">
                         <svg class="w-10 h-10 text-yellow-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <div>
-                            <h3 class="text-lg font-bold">Softwares de segurança obsoletos</h3>
-                            <p class="text-gray-300">Ferramentas baseadas em assinaturas são reativas e falham em detectar malwares que nunca foram vistos antes.</p>
+                            <h3 class="text-lg font-semibold text-white">Softwares de segurança obsoletos</h3>
+                            <p class="text-gray-400">Ferramentas baseadas em assinaturas são reativas e falham em detectar malwares que nunca foram vistos antes.</p>
                         </div>
                     </div>
-                     <div class="glass-bg p-6 rounded-2xl flex items-start space-x-4">
+                     <div class="card-bg p-6 flex items-start space-x-4">
                         <svg class="w-10 h-10 text-orange-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <div>
-                            <h3 class="text-lg font-bold">Ameaças "Zero-Day"</h3>
-                            <p class="text-gray-300">São a nova norma. Causam o maior dano por passarem despercebidas pelas defesas tradicionais.</p>
+                            <h3 class="text-lg font-semibold text-white">Ameaças "Zero-Day"</h3>
+                            <p class="text-gray-400">São a nova norma. Causam o maior dano por passarem despercebidas pelas defesas tradicionais.</p>
                         </div>
                     </div>
                 </div>
@@ -206,19 +205,19 @@
         <div id="slide3" class="slide p-8">
             <div class="max-w-6xl mx-auto text-center">
                  <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">A Oportunidade</h2>
-                 <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">Um Gigante Digital Desprotegido</p>
+                 <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">Um Gigante Digital Desprotegido</p>
                  <div class="mt-12 grid md:grid-cols-3 gap-8">
-                    <div class="glass-bg p-8 rounded-2xl">
-                         <p class="brand-gradient text-6xl font-black">43%</p>
-                         <p class="mt-2 text-gray-300">de toda a internet roda em WordPress. É o principal campo de batalha da cibersegurança.</p>
+                    <div class="card-bg p-8">
+                         <p class="brand-gradient text-7xl font-black tracking-tighter">43%</p>
+                         <p class="mt-2 text-gray-400">de toda a internet roda em WordPress. É o principal campo de batalha da cibersegurança.</p>
                     </div>
-                    <div class="glass-bg p-8 rounded-2xl">
+                    <div class="card-bg p-8">
                         <svg class="w-16 h-16 mx-auto brand-gradient" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9m-9 9a9 9 0 00-9-9"></path></svg>
-                         <p class="mt-4 text-gray-300">Uma lacuna no mercado brasileiro para uma solução de ponta, acessível e focada neste ecossistema.</p>
+                         <p class="mt-4 text-gray-400">Uma lacuna no mercado brasileiro para uma solução de ponta, acessível e focada neste ecossistema.</p>
                     </div>
-                     <div class="glass-bg p-8 rounded-2xl">
-                         <p class="text-red-400 text-6xl font-black">!</p>
-                         <p class="mt-2 text-gray-300">A crescente onda de ataques cria uma demanda imediata. O mercado clama por uma ferramenta mais inteligente.</p>
+                     <div class="card-bg p-8">
+                         <p class="text-red-400 text-7xl font-black tracking-tighter">!</p>
+                         <p class="mt-2 text-gray-400">A crescente onda de ataques cria uma demanda imediata. O mercado clama por uma ferramenta mais inteligente.</p>
                     </div>
                  </div>
             </div>
@@ -229,7 +228,7 @@
             <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
                 <div>
                      <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">A Solução</h2>
-                     <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2 brand-gradient">Imunno: Um Sistema Imunológico Digital</p>
+                     <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2 brand-gradient">Imunno: Um Sistema Imunológico Digital</p>
                      <p class="mt-6 text-lg text-gray-300">Apresentamos o Imunno System, uma plataforma que imita o sistema imunológico humano, focada em adaptação e inteligência.</p>
                      <div class="mt-8 space-y-4">
                         <p class="bullet-point text-lg">IA Adaptativa e proprietária que evolui com as ameaças.</p>
@@ -257,32 +256,25 @@
             <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
                  <div>
                     <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">Tecnologia e Diferenciais</h2>
-                    <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">Como Neutralizamos o Indetectável</p>
+                    <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">Como Neutralizamos o Indetectável</p>
                     <p class="mt-6 text-lg text-gray-300">O segredo não é memorizar ameaças, mas entender o **comportamento**.</p>
                      <div class="mt-8 space-y-4">
-                        <div class="glass-bg p-4 rounded-lg">
-                           <p class="font-bold text-sky-400">Análise de Causalidade</p>
-                           <p class="text-sm text-gray-300">Mapeamos a árvore genealógica do ataque, identificando a causa raiz para uma neutralização precisa.</p>
+                        <div class="card-bg p-4">
+                           <p class="font-semibold text-sky-400">Análise de Causalidade</p>
+                           <p class="text-sm text-gray-400">Mapeamos a árvore genealógica do ataque, identificando a causa raiz para uma neutralização precisa.</p>
                         </div>
-                         <div class="glass-bg p-4 rounded-lg">
-                           <p class="font-bold text-sky-400">Detecção de Ameaças Zero-Day</p>
-                           <p class="text-sm text-gray-300">Identificamos atividades maliciosas pelo contexto, mesmo em arquivos legítimos, sem conhecimento prévio da ameaça.</p>
+                         <div class="card-bg p-4">
+                           <p class="font-semibold text-sky-400">Detecção de Ameaças Zero-Day</p>
+                           <p class="text-sm text-gray-400">Identificamos atividades maliciosas pelo contexto, mesmo em arquivos legítimos, sem conhecimento prévio da ameaça.</p>
                         </div>
-                         <div class="glass-bg p-4 rounded-lg">
-                           <p class="font-bold text-sky-400">Alta Performance: &lt; 0.5% CPU/RAM</p>
-                           <p class="text-sm text-gray-300">Segurança robusta que não impacta o desempenho do servidor, validado em testes de estresse.</p>
+                         <div class="card-bg p-4">
+                           <p class="font-semibold text-sky-400">Alta Performance: &lt; 0.5% CPU/RAM</p>
+                           <p class="text-sm text-gray-400">Segurança robusta que não impacta o desempenho do servidor, validado em testes de estresse.</p>
                         </div>
                         
-                        <div class="mt-6">
-                            <a href="https://youtu.be/RU5mggiuOT0" target="_blank" class="brand-bg-gradient text-white font-bold py-3 px-6 rounded-lg inline-flex items-center space-x-2 hover:opacity-90 transition-opacity">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <span>Veja a Causalidade em Ação (Demo Anterior)</span>
-                            </a>
                         </div>
-
-                    </div>
                  </div>
-                 <div class="glass-bg p-6 rounded-2xl font-mono text-sm">
+                 <div class="card-bg-darker p-6 rounded-2xl font-mono text-sm border border-gray-800">
                     <p class="text-gray-400">// Árvore Genealógica do Ataque</p>
                     <div class="attack-tree text-sky-300 mt-4">
                         <div>
@@ -319,36 +311,38 @@
         </div>
 
         <div id="slide6" class="slide p-8">
-            <div class="max-w-6xl mx-auto text-center md:text-left">
-                <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">Estágio do Projeto</h2>
-                <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">Tecnologia Validada em Campo de Batalha</p>
-                <p class="mt-4 text-lg text-gray-300 max-w-3xl mx-auto md:mx-0">O Imunno não é uma teoria. É uma realidade funcional pronta para os primeiros pilotos.</p>
-            </div>
-            <div class="mt-12 max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
-                <div class="space-y-4">
-                    <div class="glass-bg p-6 rounded-lg text-left flex items-center space-x-4">
-                        <svg class="w-8 h-8 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <p class="text-lg">Testes de estresse com ameaças reais concluídos com sucesso.</p>
-                    </div>
-                    <div class="glass-bg p-6 rounded-lg text-left flex items-center space-x-4">
-                        <svg class="w-8 h-8 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <p class="text-lg">Validação técnica completa da IA, causalidade e heurísticas.</p>
-                    </div>
-                    <div class="glass-bg p-6 rounded-lg text-left flex items-center space-x-4">
-                       <svg class="w-8 h-8 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                       <p class="text-lg font-bold">Produto Mínimo Viável (MVP) com tecnologia central robusta e pronta.</p>
-                    </div>
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center md:text-left">
+                    <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">Estágio do Projeto</h2>
+                    <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">Tecnologia Validada em Campo de Batalha</p>
+                    <p class="mt-4 text-lg text-gray-300 max-w-3xl mx-auto md:mx-0">O Imunno não é uma teoria. É uma realidade funcional pronta para os primeiros pilotos.</p>
                 </div>
-                <div class="glass-bg p-4 rounded-2xl flex justify-center items-center">
-                    <iframe 
-                        class="w-full aspect-video rounded-lg" 
-                        src="https://www.youtube.com/embed/-uEAJLTI8XM" 
-                        title="Demo Imunno System - Explicada" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
-                    </iframe>
+                <div class="mt-12 max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <div class="card-bg p-6 text-left flex items-center space-x-4">
+                            <svg class="w-8 h-8 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <p class="text-lg">Testes de estresse com ameaças reais concluídos com sucesso.</p>
+                        </div>
+                        <div class="card-bg p-6 text-left flex items-center space-x-4">
+                            <svg class="w-8 h-8 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <p class="text-lg">Validação técnica completa da IA, causalidade e heurísticas.</p>
+                        </div>
+                        <div class="card-bg p-6 text-left flex items-center space-x-4">
+                           <svg class="w-8 h-8 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                           <p class="text-lg font-bold">Produto Mínimo Viável (MVP) com tecnologia central robusta e pronta.</p>
+                        </div>
+                    </div>
+                    <div class="card-bg p-2 flex justify-center items-center">
+                        <iframe 
+                            class="w-full aspect-video rounded-lg" 
+                            src="https://www.youtube.com/embed/-uEAJLTI8XM" 
+                            title="Demo Imunno System - Explicada" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
                 </div>
             </div>
              <div class="slide-counter text-xs text-gray-400">6 / 11</div>
@@ -357,27 +351,27 @@
         <div id="slide7" class="slide p-8">
             <div class="max-w-6xl mx-auto text-center">
                  <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">O Cenário Atual</h2>
-                 <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">Por que o Imunno Vence?</p>
+                 <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">Por que o Imunno Vence?</p>
                  <p class="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">Concorrentes focam em "o quê". Nós focamos em "como" e "por quê".</p>
                  
                  <div class="mt-12 grid md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
-                    <div class="glass-bg p-8 rounded-2xl text-left">
+                    <div class="card-bg p-8 rounded-2xl text-left">
                         <h3 class="text-2xl font-bold text-red-400">Defesas Tradicionais</h3>
-                        <p class="text-sm text-gray-400">(Wordfence, Sucuri, etc.)</p>
-                        <div class="mt-6 space-y-4">
-                            <p class="flex items-start"><span class="text-red-400 font-bold mr-3">✗</span> <span><span class="font-bold">Reativas:</span> Baseadas em assinaturas (listas de malwares conhecidos).</span></p>
-                            <p class="flex items-start"><span class="text-red-400 font-bold mr-3">✗</span> <span><span class="font-bold">Cegas a Zero-Day:</span> Falham em detectar ataques "pacientes" ou que usam arquivos legítimos (como o `wp-config.php`).</span></p>
-                            <p class="flex items-start"><span class="text-red-400 font-bold mr-3">✗</span> <span><span class="font-bold">Falsos Positivos:</span> Geram muito ruído ao bloquear ações legítimas de plugins.</span></p>
+                        <p class="text-sm text-gray-500">(Wordfence, Sucuri, etc.)</p>
+                        <div class="mt-6 space-y-4 text-gray-300">
+                            <p class="flex items-start"><span class="text-red-400 font-bold mr-3">✗</span> <span><span class="font-semibold text-white">Reativas:</span> Baseadas em assinaturas (listas de malwares conhecidos).</span></p>
+                            <p class="flex items-start"><span class="text-red-400 font-bold mr-3">✗</span> <span><span class="font-semibold text-white">Cegas a Zero-Day:</span> Falham em detectar ataques "pacientes" ou que usam arquivos legítimos.</span></p>
+                            <p class="flex items-start"><span class="text-red-400 font-bold mr-3">✗</span> <span><span class="font-semibold text-white">Falsos Positivos:</span> Geram muito ruído ao bloquear ações legítimas de plugins.</span></p>
                         </div>
                     </div>
 
-                    <div class="glass-bg p-8 rounded-2xl text-left border-2 border-sky-400 shadow-2xl shadow-sky-500/10">
+                    <div class="card-bg p-8 rounded-2xl text-left border-2 border-sky-500 shadow-2xl shadow-sky-500/20">
                         <h3 class="text-2xl font-bold brand-gradient">Imunno System</h3>
-                        <p class="text-sm text-gray-400">(Imunidade Adaptativa)</p>
-                        <div class="mt-6 space-y-4">
-                            <p class="flex items-start"><span class="text-sky-400 font-bold mr-3">✓</span> <span><span class="font-bold">Adaptativo:</span> Focado em comportamento e **análise de causalidade**.</span></p>
-                            <p class="flex items-start"><span class="text-sky-400 font-bold mr-3">✓</span> <span><span class="font-bold">Pega Zero-Day:</span> Conecta eventos separados no tempo (arquivo criado hoje, executado amanhã) para revelar o ataque.</span></p>
-                            <p class="flex items-start"><span class="text-sky-400 font-bold mr-3">✓</span> <span><span class="font-bold">Preciso:</span> Entende o contexto, reduzindo falsos positivos e neutralizando a causa raiz.</span></p>
+                        <p class="text-sm text-gray-500">(Imunidade Adaptativa)</p>
+                        <div class="mt-6 space-y-4 text-gray-300">
+                            <p class="flex items-start"><span class="text-sky-400 font-bold mr-3">✓</span> <span><span class="font-semibold text-white">Adaptativo:</span> Focado em comportamento e **análise de causalidade**.</span></p>
+                            <p class="flex items-start"><span class="text-sky-400 font-bold mr-3">✓</span> <span><span class="font-semibold text-white">Pega Zero-Day:</span> Conecta eventos separados no tempo para revelar o ataque completo.</span></p>
+                            <p class="flex items-start"><span class="text-sky-400 font-bold mr-3">✓</span> <span><span class="font-semibold text-white">Preciso:</span> Entende o contexto, reduzindo falsos positivos e neutralizando a causa raiz.</span></p>
                         </div>
                     </div>
                  </div>
@@ -389,21 +383,21 @@
              <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
                 <div>
                      <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">Mercado e Alcance</h2>
-                     <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">Um Mercado Exigente e Carente</p>
+                     <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">Um Mercado Exigente e Carente</p>
                      <p class="mt-6 text-lg text-gray-300">Nosso foco inicial é o vasto mercado de PMEs no Brasil que utilizam WordPress, um nicho mal atendido por soluções de ponta.</p>
                 </div>
                 <div class="space-y-6">
-                    <div class="glass-bg p-6 rounded-2xl">
-                         <h3 class="font-bold">Tamanho do Mercado</h3>
-                         <p class="text-sm text-gray-300">O mercado global de cibersegurança está em crescimento exponencial, e a necessidade de proteção para a infraestrutura web é crítica.</p>
+                    <div class="card-bg p-6">
+                         <h3 class="font-semibold text-white">Tamanho do Mercado</h3>
+                         <p class="text-sm text-gray-400">O mercado global de cibersegurança está em crescimento exponencial, e a necessidade de proteção para a infraestrutura web é crítica.</p>
                     </div>
-                     <div class="glass-bg p-6 rounded-2xl">
-                         <h3 class="font-bold">Necessidade Latente</h3>
-                         <p class="text-sm text-gray-300">A demanda por soluções que neutralizem ameaças zero-day e sejam acessíveis a empresas de todos os portes é clara e urgente.</p>
+                     <div class="card-bg p-6">
+                         <h3 class="font-semibold text-white">Necessidade Latente</h3>
+                         <p class="text-sm text-gray-400">A demanda por soluções que neutralizem ameaças zero-day e sejam acessíveis a empresas de todos os portes é clara e urgente.</p>
                     </div>
-                     <div class="glass-bg p-6 rounded-2xl">
-                         <h3 class="font-bold">Escalabilidade</h3>
-                         <p class="text-sm text-gray-300">Nossa arquitetura foi projetada para ser adaptável, permitindo a expansão futura para outros ambientes web além do WordPress.</p>
+                     <div class="card-bg p-6">
+                         <h3 class="font-semibold text-white">Escalabilidade</h3>
+                         <p class="text-sm text-gray-400">Nossa arquitetura foi projetada para ser adaptável, permitindo a expansão futura para outros ambientes web além do WordPress.</p>
                     </div>
                 </div>
              </div>
@@ -412,22 +406,22 @@
 
         <div id="slide9" class="slide p-8 text-center">
             <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">Clientes e Modelo de Negócio</h2>
-            <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">Protegendo a Infraestrutura da Web com um Modelo B2B Escalável</p>
+            <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">Modelo B2B Escalável</p>
             <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <div class="glass-bg p-8 rounded-2xl">
+                <div class="card-bg p-8">
                     <svg class="w-12 h-12 mx-auto text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path></svg>
-                    <h3 class="mt-4 font-bold text-lg">Principal: Provedores</h3>
-                    <p class="mt-2 text-sm text-gray-300">Parcerias com empresas de hospedagem para distribuição em massa. <span class="font-bold text-sky-300">Valor: Reduz tickets de suporte ('site hackeado') e cria nova receita premium.</span></p>
+                    <h3 class="mt-4 font-bold text-lg text-white">Principal: Provedores</h3>
+                    <p class="mt-2 text-sm text-gray-400">Parcerias com empresas de hospedagem para distribuição em massa. <span class="font-medium text-sky-300">Valor: Reduz tickets de suporte ('site hackeado') e cria nova receita premium.</span></p>
                 </div>
-                <div class="glass-bg p-8 rounded-2xl">
+                <div class="card-bg p-8">
                     <svg class="w-12 h-12 mx-auto text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    <h3 class="mt-4 font-bold text-lg">Secundário: Agências</h3>
-                    <p class="mt-2 text-sm text-gray-300">Agências de dev e freelancers que gerenciam múltiplos clientes. <span class="font-bold text-sky-300">Valor: Protege o portfólio, evita retrabalho e agrega valor ao contrato de manutenção.</span></p>
+                    <h3 class="mt-4 font-bold text-lg text-white">Secundário: Agências</h3>
+                    <p class="mt-2 text-sm text-gray-400">Agências de dev e freelancers que gerenciam múltiplos clientes. <span class="font-medium text-sky-300">Valor: Protege o portfólio, evita retrabalho e agrega valor ao contrato de manutenção.</span></p>
                 </div>
-                <div class="glass-bg p-8 rounded-2xl">
+                <div class="card-bg p-8">
                     <svg class="w-12 h-12 mx-auto text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    <h3 class="mt-4 font-bold text-lg">Modelo: SaaS</h3>
-                    <p class="mt-2 text-sm text-gray-300">Serviço de segurança premium (B2B), gerando receita recorrente e previsível através dos nossos parceiros.</p>
+                    <h3 class="mt-4 font-bold text-lg text-white">Modelo: SaaS</h3>
+                    <p class="mt-2 text-sm text-gray-400">Serviço de segurança premium (B2B), gerando receita recorrente e previsível através dos nossos parceiros.</p>
                 </div>
             </div>
             <div class="slide-counter text-xs text-gray-400">9 / 11</div>
@@ -435,25 +429,26 @@
 
         <div id="slide10" class="slide p-8 text-center">
              <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">O Time</h2>
-             <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">Fundador e Arquiteto da Solução</p>
-             <div class="mt-12 max-w-md mx-auto glass-bg p-8 rounded-2xl">
+             <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">Fundador e Arquiteto da Solução</p>
+             <div class="mt-12 max-w-md mx-auto card-bg p-8">
                 <img class="w-32 h-32 rounded-full mx-auto object-cover" src="https://i.imgur.com/RAkM0ir.jpeg">
-                <h3 class="mt-6 text-2xl font-bold">Rodrigo Freire</h3>
-                <p class="mt-2 text-sky-400">Fundador & Arquiteto de Software</p>
+                <h3 class="mt-6 text-2xl font-bold text-white">Rodrigo Freire</h3>
+                <p class="mt-2 text-sky-400 font-semibold">Fundador & Arquiteto de Software</p>
                 <p class="mt-4 text-gray-300 text-left">Obsessivo por criar uma solução de segurança de nível mundial, com a simplicidade e o custo adaptados à realidade brasileira. Desenvolvi toda a tecnologia central do Imunno, da IA à análise de causalidade, com foco em máxima eficiência e robustez.</p>
              </div>
              <div class="slide-counter text-xs text-gray-400">10 / 11</div>
         </div>
         
-        <div id="slide11" class="slide p-8 text-center bg-cover bg-center" style="background-image: url('https://placehold.co/0f172a/3b82f6');">
-            <div class="absolute inset-0 bg-gray-900/80"></div>
+        <div id="slide11" class="slide p-8 text-center">
             <div class="relative z-10">
                 <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">O Próximo Passo</h2>
-                <p class="text-4xl md:text-5xl font-bold tracking-tight mt-2">O Pedido para Proteger a Web Brasileira</p>
-                <div class="mt-8 max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-                    <div class="glass-bg p-8 rounded-2xl text-left">
-                        <h3 class="text-2xl font-bold brand-gradient">Buscamos: R$ 750.000</h3>
-                        <p class="mt-4 text-gray-300">Para transformar nosso MVP validado em um produto líder de mercado em 18 meses.</p>
+                <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">O Pedido (Pre-Seed)</p>
+                
+                <div class="mt-8 max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+                    <div class="card-bg p-8 rounded-2xl text-left">
+                        <h3 class="text-3xl font-extrabold brand-gradient">Buscamos: R$ 350.000</h3>
+                        <p class="mt-4 text-gray-300 text-xl font-semibold">Por 10% de equity (pre-money de R$ 3.15M).</p>
+                        <p class="mt-4 text-gray-400">Para transformar o MVP validado em um produto de mercado em 12 meses.</p>
                     </div>
                     <div class="text-left space-y-2">
                         <p class="bullet-point">Finalizar a Dashboard administrativa</p>
@@ -462,6 +457,7 @@
                         <p class="bullet-point">Formar a equipe inicial de negócios</p>
                     </div>
                 </div>
+
                 <div class="mt-12">
                     <p class="text-2xl font-bold">Junte-se a nós na missão de tornar a internet mais segura.</p>
                     <p class="mt-4 text-lg brand-bg-gradient text-white font-bold py-3 px-6 rounded-lg inline-block">E-mail: rodrigofreire.corporativo@gmail.com
@@ -480,5 +476,3 @@
     </script>
 </body>
 </html>
-
-
