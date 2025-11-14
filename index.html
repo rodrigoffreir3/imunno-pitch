@@ -28,10 +28,15 @@
             height: 100vh;
         }
 
-        /* ESTILOS "BIG TECH" */
+        /* ==================================================================
+        == NOVOS ESTILOS "BIG TECH" ==
+        ==================================================================
+        */
+        
+        /* O "Card" moderno que substitui o glass-bg */
         .card-bg {
             background-color: #020617; /* bg-slate-950 */
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
             border-radius: 1rem; /* rounded-xl */
         }
         .card-bg-darker {
@@ -39,6 +44,7 @@
              border: 1px solid rgba(255, 255, 255, 0.1);
              border-radius: 1rem;
         }
+
         .brand-gradient {
             background: linear-gradient(90deg, #38bdf8, #3b82f6);
             -webkit-background-clip: text;
@@ -103,6 +109,18 @@
                 transform: translateX(-50%) translateY(-10px);
             }
         }
+        .vs-circle {
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: #f59e0b;
+        }
         
         /* Regras de Impressão para PDF */
         @media print {
@@ -138,16 +156,11 @@
 </head>
 <body class="bg-black text-white overflow-hidden">
     <div id="deck-container" class="container-snap">
-        
+
         <div id="slide1" class="slide p-8 text-center">
              <div class="relative z-10">
-                <div class="mb-8"> <img src="https://imgur.com/spuIdFP.png" alt="Logo Imunno System - Centurião" class="w-auto h-24 md:h-28 mx-auto">
-                </div>
-                <h1 class="text-2xl md:text-3xl text-gray-300 max-w-3xl mx-auto tracking-tight">
-                    O sistema imunológico para a web.
-                    <br>
-                    Segurança adaptativa para a era dos ataques zero-day.
-                </h1>
+                <div class="mb-8"> <img src="https://imgur.com/spuIdFP.png" alt="Logo Imunno System" class="w-auto h-72 mx-auto"> </div>
+                <p class="mt-6 text-2xl md:text-3xl text-gray-300 max-w-3xl mx-auto tracking-tight">O sistema imunológico para a web. Segurança adaptativa para a era dos ataques zero-day.</p>
                 <div class="arrow-down mt-16">
                     <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
@@ -253,7 +266,7 @@
                            <p class="text-sm text-gray-400">Identificamos atividades maliciosas pelo contexto, mesmo em arquivos legítimos, sem conhecimento prévio da ameaça.</p>
                         </div>
                          <div class="card-bg p-4">
-                           <p class="font-semibold text-sky-400">Alta Performance: &lt; 0.5% CPU/RAM</p>
+                           <p class="font-semibold text-sky-400">Alta Performance: &lt; 0.07% CPU/RAM</p>
                            <p class="text-sm text-gray-400">Segurança robusta que não impacta o desempenho do servidor, validado em testes de estresse.</p>
                         </div>
                     </div>
@@ -298,8 +311,8 @@
             <div class="max-w-6xl mx-auto">
                 <div class="text-center md:text-left">
                     <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">Estágio do Projeto</h2>
-                    <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">Tecnologia Validada em 40 Dias</p>
-                    <p class="mt-4 text-lg text-gray-300 max-w-3xl mx-auto md:mx-0">O Imunno não é uma teoria. É uma realidade funcional (MVP) construída e validada em 40 dias, provando a velocidade de execução do fundador.</p>
+                    <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">Tecnologia Validada (prova de conceito)</p>
+                    <p class="mt-4 text-lg text-gray-300 max-w-3xl mx-auto md:mx-0">O Imunno não é uma teoria. É uma realidade funcional (MVP) construída e validada, pronta para os primeiros pilotos.</p>
                 </div>
                 <div class="mt-12 max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
                     <div class="space-y-4">
@@ -418,7 +431,7 @@
                 <img class="w-32 h-32 rounded-full mx-auto object-cover" src="https://i.imgur.com/RAkM0ir.jpeg">
                 <h3 class="mt-6 text-2xl font-bold text-white">Rodrigo Freire</h3>
                 <p class="mt-2 text-sky-400 font-semibold">Fundador & Arquiteto de Software</p>
-                <p class="mt-4 text-gray-300 text-left">Obsessivo por criar uma solução de segurança de nível mundial. Desenvolvi toda a tecnologia central do Imunno (MVP em 40 dias), da IA à análise de causalidade, com foco em máxima eficiência.</p>
+                <p class="mt-4 text-gray-300 text-left">Obsessivo por criar uma solução de segurança de nível mundial, com a simplicidade e o custo adaptados à realidade brasileira. Desenvolvi toda a tecnologia central do Imunno, da IA à análise de causalidade, com foco em máxima eficiência.</p>
              </div>
              <div class="slide-counter text-xs text-gray-400">10 / 11</div>
         </div>
@@ -436,19 +449,26 @@
                     </div>
                     
                     <div class="text-left space-y-2 text-gray-300">
-                        <p class="bullet-point text-lg">Implementar a arquitetura assíncrona (Fila de Mensagens & Workers Escaláveis).</p>
-                        <p class="bullet-point text-lg">Implementar a ingestão de eventos em *Time-Series* (para escala massiva de *writes*).</p>
-                        <p class="bullet-point text-lg">Desenvolver o rastreamento de Causalidade Persistente (para "ataques dormentes").</p>
-                        <p class="bullet-point text-lg">Automatizar o *pipeline* de MLOps Supervisionado (o "Learning Mode").</p>
-                        <p class="bullet-point text-lg">Evoluir o monitoramento do Agente de `auditd` para **eBPF** (maior performance).</p>
-                        <p class="bullet-point text-lg">Aplicar Sanitização de Payloads e Hardening no Agente (Segurança v2).</p>
+                        <p class="bullet-point text-lg">Contratação da primeira equipe de trabalho;</p>
+                        <p class="bullet-point text-lg">Compra de servidores dedicados;</p>
+                        <p class="bullet-point text-lg">Criação e implementação de estratégias de marketing;</p>
+                        <p class="bullet-point text-lg">Implementar a arquitetura assíncrona - Fila de Mensagens & Workers Escaláveis -;</p>
+                        <p class="bullet-point text-lg">Implementar a ingestão de eventos em Time-Series - para escala massiva de writes -;</p>
+                        <p class="bullet-point text-lg">Automatizar o pipeline de MLOps Supervisionado - o "Learning Mode" com proteção anti-envenenamento -;</p>
+                        <p class="bullet-point text-lg">Evoluir o monitoramento do Agente de auditd para eBPF - para maior performance e menor overhead -;</p>
+                        <p class="bullet-point text-lg">Implementar Autenticação mTLS (Mutual TLS) Agente-Collector - Para garantir que o collector só aceita dados de agentes verificados e que o agente só fala com um collector legítimo, prevenindo ataques "man-in-the-middle" e spoofing de eventos -;</p>
+                        <p class="bullet-point text-lg">Desenvolver a Auto-Proteção (Hardening) do agente - Para tornar o processo do agente "imune" a tampering (adulteração), impedindo que um hacker o mate, o modifique ou o use como um backdoor -;</p>
+                        <p class="bullet-point text-lg">Integrar um Sistema de Gestão de Segredos (ex: HashiCorp Vault) - Para remover todas as senhas (ex: do PostgreSQL) do código e das variáveis de ambiente, armazenando-as num cofre central e seguro -;</p>
+                        <p class="bullet-point text-lg">Implementar Controle de Acesso (RBAC) e Auditoria no Dashboard - Para garantir que apenas administradores autorizados (como a equipa da Hostnet) possam aceder ao dashboard e que todas as suas ações (ex: "colocar na whitelist") sejam registadas num log de auditoria -;</p>
+                        <p class="bullet-point text-lg">Aplicar Sanitização de Payloads no Collector - Para tratar todos os dados vindos dos agentes como "hostis", prevenindo vulnerabilidades como Injeção de SQL ou RCE no back-end do Imunno -;</p>
+                        <p class="bullet-point text-lg">Finalizar a dashboard multi-tenant e o *deploy* automatizado (Ansible/K8s);</p>
                         <p class="bullet-point text-lg">Executar o sistema nos primeiros servers da Hostnet (1% para teste "Canary").</p>
                     </div>
                 </div>
 
                 <div class="mt-12">
                     <p class="text-2xl font-bold">Junte-se a nós na missão de tornar a internet mais segura.</p>
-                    <p class="mt-4 text-lg brand-bg-gradient text-white font-bold py-3 px-6 rounded-lg inline-block">E-mail: contato@imunnosystem.net
+                    <p class="mt-4 text-lg brand-bg-gradient text-white font-bold py-3 px-6 rounded-lg inline-block">E-mail: contato@imunnosystem.com
                         WhatsApp: (69) 9 9278-2919
                     </p>
                 </div>
