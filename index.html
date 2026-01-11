@@ -447,74 +447,87 @@
              <div class="slide-counter text-xs text-gray-400">10 / 11</div>
         </div>
         
-        <div id="slide11" class="slide p-8 text-center">
-            <div class="relative z-10">
-                <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">O Próximo Passo</h2>
-                <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">O Pedido (Pre-Seed)</p>
-                
-                <div class="mt-8 max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-start">
-                    <div class="space-y-8">
-                        <div class="card-bg p-8 rounded-2xl text-left">
-                            <h3 class="text-3xl font-extrabold brand-gradient">Buscamos: R$ 360.000</h3>
-                            <p class="mt-4 text-gray-300 text-xl font-semibold">Por 10% de equity (pre-money de R$ 3.6M).</p>
-                            <p class="mt-4 text-gray-400">Para financiar o *runway* de 12 meses e transformar o MVP validado em um produto B2B escalável (v2).</p>
-                        </div>
-                        
-                        <div class="text-left space-y-2 text-gray-300">
-                            <h4 class="text-lg font-bold text-sky-400 mb-2">Roadmap de Execução (12 Meses):</h4>
-                            <p class="bullet-point text-sm">Compra de servidores dedicados;</p>
-                            <p class="bullet-point text-sm">Criação e implementação de estratégias de marketing;</p>
-                            <p class="bullet-point text-sm">Implementar a arquitetura assíncrona - Fila de Mensagens & Workers Escaláveis -;</p>
-                            <p class="bullet-point text-sm">Implementar a ingestão de eventos em Time-Series - para escala massiva de writes -;</p>
-                            <p class="bullet-point text-sm">Automatizar o pipeline de MLOps Supervisionado - o "Learning Mode" com proteção anti-envenenamento -;</p>
-                            <p class="bullet-point text-sm">Evoluir o monitoramento do Agente de auditd para eBPF - para maior performance e menor overhead -;</p>
-                            <p class="bullet-point text-sm">Implementar Autenticação mTLS (Mutual TLS) Agente-Collector - Para garantir que o collector só aceita dados de agentes verificados e que o agente só fala com um collector legítimo, prevenindo ataques "man-in-the-middle" e spoofing de eventos -;</p>
-                            <p class="bullet-point text-sm">Desenvolver a Auto-Proteção (Hardening) do agente - Para tornar o processo do agente "imune" a tampering (adulteração), impedindo que um hacker o mate, o modifique ou o use como um backdoor -;</p>
-                            <p class="bullet-point text-sm">Integrar um Sistema de Gestão de Segredos (ex: HashiCorp Vault) - Para remover todas as senhas (ex: do PostgreSQL) do código e das variáveis de ambiente, armazenando-as num cofre central e seguro -;</p>
-                            <p class="bullet-point text-sm">Implementar Controle de Acesso (RBAC) e Auditoria no Dashboard - Para garantir que apenas administradores autorizados (como a equipa da Hostnet) possam aceder ao dashboard e que todas as suas ações (ex: "colocar na whitelist") sejam registadas num log de auditoria -;</p>
-                            <p class="bullet-point text-sm">Aplicar Sanitização de Payloads no Collector - Para tratar todos os dados vindos dos agentes como "hostis", prevenindo vulnerabilidades como Injeção de SQL ou RCE no back-end do Imunno -;</p>
-                            <p class="bullet-point text-sm">Finalizar a dashboard multi-tenant e o *deploy* automatizado (Ansible/K8s);</p>
-                            <p class="bullet-point text-sm">Executar o sistema nos primeiros servers da empresa parceira (1% para teste "Canary").</p>
+        <div id="slide11" class="slide p-4 md:p-8">
+            <div class="max-w-7xl mx-auto flex flex-col h-full justify-between py-8">
+                <div class="text-center mb-6">
+                    <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">O Próximo Passo</h2>
+                    <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2 italic">The Mission</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch flex-grow">
+                    
+                    <div class="card-bg p-8 flex flex-col justify-center border-l-4 border-l-sky-500 shadow-lg shadow-sky-500/10">
+                        <h3 class="text-gray-400 uppercase text-xs font-bold tracking-widest mb-2">Investimento Pre-Seed</h3>
+                        <p class="text-5xl font-black brand-gradient leading-none">R$ 360k</p>
+                        <p class="text-xl text-white font-medium mt-4">10% Equity</p>
+                        <div class="h-px bg-gray-800 my-6"></div>
+                        <p class="text-gray-400 text-sm leading-relaxed text-left">
+                            Foco em <span class="text-white">Runway de 12 meses</span> para transformar o MVP validado em um ecossistema Enterprise escalável e iniciar a tração comercial.
+                        </p>
+                    </div>
+
+                    <div class="card-bg p-6 flex flex-col border-t-4 border-t-green-500">
+                        <h3 class="text-green-400 uppercase text-xs font-bold tracking-widest mb-4">Desenvolvimento V2 + Imunno Green</h3>
+                        <div class="space-y-4 text-left overflow-y-auto pr-2 max-h-[50vh]">
+                            <div>
+                                <h4 class="text-white font-bold text-sm mb-2 flex items-center">
+                                    <span class="w-2 h-2 bg-sky-500 rounded-full mr-2"></span> Infraestrutura de Escala
+                                </h4>
+                                <ul class="text-gray-400 text-xs space-y-1 ml-4 list-disc">
+                                    <li>Arquitetura eBPF para Zero Overhead</li>
+                                    <li>Ingestão Time-Series e mTLS Nativo</li>
+                                    <li>Orquestração com Ansible/K8s</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm mb-2 flex items-center">
+                                    <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span> Imunno Green (ESG)
+                                </h4>
+                                <ul class="text-gray-400 text-xs space-y-1 ml-4 list-disc">
+                                    <li>Eco-Throttling de processos não-vitais</li>
+                                    <li>Gerenciamento de energia a nível de hardware</li>
+                                    <li>Certificação de TI Sustentável</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm mb-2 flex items-center">
+                                    <span class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span> Security Hardening
+                                </h4>
+                                <ul class="text-gray-400 text-xs space-y-1 ml-4 list-disc">
+                                    <li>Auto-proteção do Agente (Anti-Tampering)</li>
+                                    <li>Integração HashiCorp Vault</li>
+                                    <li>Controle RBAC e Auditoria</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="card-bg-darker p-8 rounded-2xl text-left border border-purple-500/30">
-                        <h3 class="text-2xl font-bold text-purple-400 mb-4">Visão de Futuro (R&D)</h3>
-                        <p class="text-sm text-gray-400 mb-6">Onde estaremos após a consolidação do produto. A evolução para um organismo digital autônomo.</p>
-                        
-                        <div class="space-y-4 text-gray-300">
-                            <div>
-                                <h4 class="font-bold text-white mb-1">⚡ Imunno Green (Eficiência Energética)</h4>
-                                <p class="future-point text-sm">Gerenciamento inteligente de energia a nível de hardware.</p>
-                                <p class="future-point text-sm">Algoritmos de "eco-throttling" para reduzir consumo de processos não-vitais.</p>
+                    <div class="card-bg-darker p-6 flex flex-col border-r-4 border-r-purple-500 bg-gradient-to-br from-slate-950 to-purple-950/20">
+                        <h3 class="text-purple-400 uppercase text-xs font-bold tracking-widest mb-4">Pesquisa Futura (V3)</h3>
+                        <div class="space-y-6 text-left">
+                            <div class="relative pl-4 border-l border-purple-500/30">
+                                <h4 class="text-purple-100 font-bold text-sm mb-1 italic">🧬 Vida Artificial & Biomimética</h4>
+                                <p class="text-gray-400 text-[11px] leading-relaxed">
+                                    Sistemas que operam em Homeostase digital, gerando suas próprias simulações de defesa e evoluindo via Algoritmos Genéticos.
+                                </p>
                             </div>
-                            
-                            <div>
-                                <h4 class="font-bold text-white mb-1">🧬 Projeto Biomimética (Vida Artificial)</h4>
-                                <p class="future-point text-sm">Transformação em agente autônomo que se auto-regula (Homeostase).</p>
-                                <p class="future-point text-sm">Evolução Genética: O sistema cria suas próprias simulações de ataque e "evolui" as regras de defesa automaticamente.</p>
-                                <p class="future-point text-sm">Auto-multiplicação segura e adaptação darwiniana ao ambiente hostil da web.</p>
+                            <div class="relative pl-4 border-l border-purple-500/30 text-center py-4 bg-purple-500/5 rounded">
+                                <p class="text-purple-300 font-bold text-xs uppercase tracking-widest">A meta final:</p>
+                                <p class="text-white font-black text-lg">Um Organismo Digital Autônomo</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-12">
-                    <p class="text-2xl font-bold">Junte-se a nós na missão de tornar a internet mais segura.</p>
-                    <p class="mt-4 text-lg brand-bg-gradient text-white font-bold py-3 px-6 rounded-lg inline-block">E-mail: contato@imunnosystem.com
-                        WhatsApp: (69) 9 9278-2919
-                    </p>
+                <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 border-t border-gray-800 pt-6">
+                    <p class="text-xl font-medium text-gray-300 italic">"Protegendo o presente, arquitetando o futuro."</p>
+                    <div class="flex gap-4">
+                        <span class="brand-bg-gradient px-4 py-2 rounded text-xs font-bold">contato@imunnosystem.com</span>
+                        <span class="bg-gray-800 px-4 py-2 rounded text-xs font-bold text-gray-300">WA: (69) 9 9278-2919</span>
+                    </div>
                 </div>
             </div>
             <div class="slide-counter text-xs text-gray-400">11 / 11</div>
         </div>
 
-    </div>
-
-    <script>
-        // Script simples para indicar slide atual, se necessário no futuro.
-        // Por agora, o scroll snap cuida da navegação.
-    </script>
-</body>
-</html>
 
