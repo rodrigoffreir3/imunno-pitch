@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pitch Deck - Imunno System</title>
+    <title>Pitch Deck - Imunno System (IoT Edition)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            background-color: #000000;
         }
         .slide {
             min-height: 100vh;
@@ -26,45 +27,42 @@
             scroll-snap-type: y mandatory;
             overflow-y: scroll;
             height: 100vh;
+            scroll-behavior: smooth;
         }
 
-        /* ==================================================================
-        == NOVOS ESTILOS "BIG TECH" ==
-        ==================================================================
-        */
+        /* --- ESTILOS VISUAIS --- */
         
-        /* O "Card" moderno que substitui o glass-bg */
+        /* Card com efeito Glass/Tech */
         .card-bg {
-            background-color: #020617; /* bg-slate-950 */
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
-            border-radius: 1rem; /* rounded-xl */
+            background-color: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
         }
         .card-bg-darker {
-             background-color: rgba(2, 6, 23, 0.5); /* bg-slate-950/50 */
-             border: 1px solid rgba(255, 255, 255, 0.1);
+             background-color: rgba(5, 5, 5, 0.8);
+             border: 1px solid rgba(255, 255, 255, 0.05);
              border-radius: 1rem;
         }
 
+        /* Gradientes da Marca (Azul Cyber + Verde Energia) */
         .brand-gradient {
-            background: linear-gradient(90deg, #38bdf8, #3b82f6);
+            background: linear-gradient(135deg, #38bdf8 0%, #22c55e 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .brand-bg-gradient {
-             background: linear-gradient(90deg, #38bdf8, #3b82f6);
+             background: linear-gradient(135deg, #38bdf8 0%, #22c55e 100%);
         }
+        
         .bullet-point::before {
-            content: '✓';
-            color: #38bdf8;
+            content: '⚡';
             margin-right: 0.75rem;
-            font-weight: 700;
+            font-size: 1rem;
         }
-        /* Bullet point para o Futuro (diferente) */
-        .future-point::before {
-            content: '🚀';
-            margin-right: 0.75rem;
-            font-size: 1.2rem;
-        }
+
+        /* Árvore de Processos (Visual Terminal) */
+        .tech-font { font-family: 'JetBrains Mono', monospace; }
         
         .attack-tree div {
             position: relative;
@@ -73,31 +71,20 @@
         .attack-tree div::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            border-left: 1px solid #38bdf8;
+            top: 0; left: 0;
+            border-left: 1px solid #333;
             height: 100%;
         }
-        .attack-tree div:last-child::before {
-            height: 12px;
-        }
+        .attack-tree div:last-child::before { height: 12px; }
         .attack-tree div::after {
             content: '';
             position: absolute;
-            top: 12px;
-            left: 0;
-            border-top: 1px solid #38bdf8;
+            top: 12px; left: 0;
+            border-top: 1px solid #333;
             width: 15px;
         }
-        .slide-counter {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.3);
-            padding: 0.25rem 0.75rem;
-            border-radius: 99px;
-        }
+
+        /* Navegação */
         .arrow-down {
             position: absolute;
             bottom: 2rem;
@@ -106,428 +93,394 @@
             animation: bounce 2s infinite;
         }
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-15px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-        }
-        .vs-circle {
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.25rem;
-            color: #f59e0b;
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
         }
         
-        /* Regras de Impressão para PDF */
+        .slide-counter {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            opacity: 0.3;
+        }
+
+        /* Responsividade e Impressão */
         @media print {
-            * {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-            body, html {
-                overflow: visible !important;
-                height: auto;
-            }
-            .container-snap {
-                overflow-y: visible;
-                height: auto;
-                scroll-snap-type: none;
-            }
-            .slide {
-                height: 100vh;
-                page-break-after: always;
-                display: flex;
-                align-items: center;
-                padding: 2rem;
-            }
-            .arrow-down, 
-            .slide-counter {
-                display: none !important;
-            }
-            .slide:last-child {
-                page-break-after: avoid;
-            }
+            .container-snap { overflow-y: visible; height: auto; scroll-snap-type: none; }
+            .slide { height: 100vh; page-break-after: always; }
+            .arrow-down, .slide-counter { display: none; }
         }
     </style>
 </head>
-<body class="bg-black text-white overflow-hidden">
+<body class="text-white overflow-hidden selection:bg-green-500/30">
     <div id="deck-container" class="container-snap">
         
-        <div id="slide1" class="slide p-8 text-center">
+        <div id="slide1" class="slide p-8 text-center bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-opacity-5">
              <div class="relative z-10 flex flex-col items-center justify-center h-full">
-                <div class="mb-8"> 
-                    <img src="https://i.imgur.com/JlJA62c.png" alt="Logo Imunno System" class="w-auto h-[60vh] md:h-[65vh] mx-auto object-contain">
+                <div class="mb-6 relative"> 
+                    <div class="w-32 h-32 rounded-full bg-gradient-to-tr from-sky-500 to-green-500 blur-[60px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-40"></div>
+                    <img src="https://i.imgur.com/JlJA62c.png" alt="Logo Imunno System" class="relative z-10 w-auto h-32 md:h-48 mx-auto object-contain">
                 </div>
-                <p class="mt-2 text-2xl md:text-3xl text-gray-300 max-w-3xl mx-auto tracking-tight">O sistema imunológico para a web.
-                <br>
-                Segurança adaptativa para a era dos ataques zero-day.</p>
-                <div class="arrow-down mt-8">
-                    <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                
+                <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-4">
+                    IMUNNO <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-green-400">SYSTEM</span>
+                </h1>
+                
+                <p class="mt-4 text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">
+                    O primeiro WAF Inteligente para IoT & Sistemas Embarcados.
+                    <br>
+                    <span class="text-white font-medium">Segurança Máxima. Consumo Zero.</span>
+                </p>
+
+                <div class="mt-8 flex gap-4">
+                    <div class="px-4 py-1 rounded-full border border-gray-800 bg-gray-900/50 text-xs text-gray-400 font-mono">
+                        Hardware-Level Defense
+                    </div>
+                    <div class="px-4 py-1 rounded-full border border-gray-800 bg-gray-900/50 text-xs text-gray-400 font-mono">
+                        Eco-Throttling™
+                    </div>
+                </div>
+
+                <div class="arrow-down text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
             </div>
         </div>
 
-        <div id="slide2" class="slide p-8">
-            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-                <div class="text-center md:text-left">
-                    <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">O Problema</h2>
-                    <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">A Evolução das Ameaças Superou as Defesas</p>
-                </div>
-                <div class="space-y-6">
-                    <div class="card-bg p-6 flex items-start space-x-4">
-                        <svg class="w-10 h-10 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        <div>
-                            <h3 class="text-lg font-semibold text-white">Ataques mais sofisticados</h3>
-                            <p class="text-gray-400">As ameaças na web são mais organizadas, inovadoras e eficientes, superando as defesas convencionais.</p>
-                        </div>
-                    </div>
-                    <div class="card-bg p-6 flex items-start space-x-4">
-                        <svg class="w-10 h-10 text-yellow-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <div>
-                            <h3 class="text-lg font-semibold text-white">Softwares de segurança obsoletos</h3>
-                            <p class="text-gray-400">Ferramentas baseadas em assinaturas são reativas e falham em detectar malwares que nunca foram vistos antes.</p>
-                        </div>
-                    </div>
-                     <div class="card-bg p-6 flex items-start space-x-4">
-                        <svg class="w-10 h-10 text-orange-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <div>
-                            <h3 class="text-lg font-semibold text-white">Ameaças "Zero-Day"</h3>
-                            <p class="text-gray-400">São a nova norma. Causam o maior dano por passarem despercebidas pelas defesas tradicionais.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-             <div class="slide-counter text-xs text-gray-400">2 / 11</div>
-        </div>
-
-        <div id="slide3" class="slide p-8">
-            <div class="max-w-6xl mx-auto text-center">
-                 <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">A Oportunidade</h2>
-                 <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">Um Gigante Digital Desprotegido</p>
-                 <div class="mt-12 grid md:grid-cols-3 gap-8">
-                    <div class="card-bg p-8">
-                         <p class="brand-gradient text-7xl font-black tracking-tighter">43%</p>
-                         <p class="mt-2 text-gray-400">de toda a internet roda em WordPress. É o principal campo de batalha da cibersegurança.</p>
-                    </div>
-                    <div class="card-bg p-8">
-                        <svg class="w-16 h-16 mx-auto brand-gradient" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9m-9 9a9 9 0 00-9-9"></path></svg>
-                         <p class="mt-4 text-gray-400">Uma lacuna no mercado brasileiro para uma solução de ponta, acessível e focada neste ecossistema.</p>
-                    </div>
-                     <div class="card-bg p-8">
-                         <p class="text-red-400 text-7xl font-black tracking-tighter">!</p>
-                         <p class="mt-2 text-gray-400">A crescente onda de ataques cria uma demanda imediata. O mercado clama por uma ferramenta mais inteligente.</p>
-                    </div>
-                 </div>
-            </div>
-             <div class="slide-counter text-xs text-gray-400">3 / 11</div>
-        </div>
-
-        <div id="slide4" class="slide p-8">
-            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div id="slide2" class="slide p-8 bg-neutral-950">
+            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
                 <div>
-                     <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">A Solução</h2>
-                     <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2 brand-gradient">Imunno: Um Sistema Imunológico Digital</p>
-                     <p class="mt-6 text-lg text-gray-300">Apresentamos o Imunno System, uma plataforma que imita o sistema imunológico humano, focada em adaptação e inteligência.</p>
-                     <div class="mt-8 space-y-4">
-                        <p class="bullet-point text-lg">IA Adaptativa e proprietária que evolui com as ameaças.</p>
-                        <p class="bullet-point text-lg">Especialista em WordPress para proteção máxima.</p>
-                        <p class="bullet-point text-lg">Segurança de ponta, acessível para PMEs.</p>
-                     </div>
+                    <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-green-500 mb-4">O Problema</h2>
+                    <p class="text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+                        A Segurança Tradicional<br>
+                        <span class="text-red-500">Mata a Bateria.</span>
+                    </p>
+                    <p class="mt-6 text-lg text-gray-400 leading-relaxed">
+                        Carros elétricos, câmeras IP e sensores agrícolas não podem rodar antivírus pesados.
+                        A segurança atual drena a energia e reduz a vida útil dos dispositivos IoT.
+                    </p>
                 </div>
-                <div class="p-8">
-                   <svg class="w-full h-auto" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <path fill="url(#grad1)" d="M48.2,-61.2C62.8,-51,75.2,-34.5,78.2,-16.9C81.2,0.8,74.8,19.6,63.7,34.7C52.6,49.8,36.7,61.1,19.8,67C3,72.9,-14.9,73.4,-31,67.8C-47.1,62.2,-61.4,50.5,-69.3,35.1C-77.2,19.7,-78.7,0.7,-74.3,-16.2C-69.9,-33.1,-59.6,-47.9,-46.3,-58.5C-33.1,-69,-16.5,-75.3,0.3,-75.6C17.2,-75.9,34.5,-71.3,48.2,-61.2Z" transform="translate(100 100)" />
-                        <text x="100" y="105" font-family="Inter" font-size="12" fill="white" text-anchor="middle" font-weight="bold">IA ADAPTATIVA</text>
-                    </svg>
-                </div>
-            </div>
-             <div class="slide-counter text-xs text-gray-400">4 / 11</div>
-        </div>
+                <div class="space-y-4">
+                    <div class="card-bg p-6 border-l-2 border-l-red-500">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-lg font-bold text-white">Consumo Excessivo</h3>
+                            <span class="text-red-500 font-mono text-xs">CPU > 5%</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-2">Antivírus comuns "varrem" arquivos o tempo todo, aquecendo o processador e drenando baterias de lítio.</p>
+                    </div>
 
-        <div id="slide5" class="slide p-8">
-            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-                 <div>
-                    <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">Tecnologia e Diferenciais</h2>
-                    <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">Como Neutralizamos o Indetectável</p>
-                    <p class="mt-6 text-lg text-gray-300">O segredo não é memorizar ameaças, mas entender o **comportamento**.</p>
-                     <div class="mt-8 space-y-4">
-                        <div class="card-bg p-4">
-                           <p class="font-semibold text-sky-400">Análise de Causalidade</p>
-                           <p class="text-sm text-gray-400">Mapeamos a árvore genealógica do ataque, identificando a causa raiz para uma neutralização precisa.</p>
+                    <div class="card-bg p-6 border-l-2 border-l-red-500">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-lg font-bold text-white">Incompatibilidade ARM</h3>
+                            <span class="text-red-500 font-mono text-xs">x86 Only</span>
                         </div>
-                         <div class="card-bg p-4">
-                           <p class="font-semibold text-sky-400">Detecção de Ameaças Zero-Day</p>
-                           <p class="text-sm text-gray-400">Identificamos atividades maliciosas pelo contexto, mesmo em arquivos legítimos, sem conhecimento prévio da ameaça.</p>
-                        </div>
-                         <div class="card-bg p-4">
-                           <p class="font-semibold text-sky-400">Alta Performance: &lt; 0.07% CPU/RAM</p>
-                           <p class="text-sm text-gray-400">Segurança robusta que não impacta o desempenho do servidor, validado em testes de estresse.</p>
-                        </div>
+                        <p class="text-sm text-gray-500 mt-2">A maioria das soluções de mercado não roda na arquitetura de chips (ARM/MIPS) usada em roteadores e carros.</p>
                     </div>
-                 </div>
-                 <div class="card-bg-darker p-6 rounded-2xl font-mono text-sm border border-gray-800">
-                    <p class="text-gray-400">// Árvore Genealógica do Ataque</p>
-                    <div class="attack-tree text-sky-300 mt-4">
-                        <div>
-                            <span class="text-white">apache2 (PID 123)</span>
-                            <div class="pl-5">
-                                <span class="text-white">upload.php</span>
-                                <div class="pl-5">
-                                    <span class="text-yellow-300">cria loader.php</span>
-                                </div>
-                            </div>
-                        </div>
-                         <div>
-                            <span class="text-white">loader.php (PID 456)</span>
-                             <div class="pl-5">
-                                <span class="text-yellow-300">conecta ip_malicioso</span>
-                                <div class="pl-5">
-                                    <span class="text-red-400 font-bold">cria malware.php</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="text-white">malware.php (PID 789)</span>
-                             <div class="pl-5">
-                                <span class="text-red-400 font-bold">lê wp-config.php</span>
-                                <div class="pl-5">
-                                    <span class="text-white font-black bg-red-500 px-2 py-1 rounded">AMEAÇA NEUTRALIZADA</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-            </div>
-             <div class="slide-counter text-xs text-gray-400">5 / 11</div>
-        </div>
 
-        <div id="slide6" class="slide p-8">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center md:text-left">
-                    <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">Estágio do Projeto</h2>
-                    <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">Tecnologia Validada (prova de conceito)</p>
-                    <p class="mt-4 text-lg text-gray-300 max-w-3xl mx-auto md:mx-0">O Imunno não é uma teoria. É uma realidade funcional (MVP) construída e validada, pronta para os primeiros pilotos.</p>
-                </div>
-                <div class="mt-12 max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
-                    <div class="space-y-4">
-                        <div class="card-bg p-6 text-left flex items-center space-x-4">
-                            <svg class="w-8 h-8 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <p class="text-lg">Testes de estresse com ameaças reais concluídos com sucesso.</p>
+                    <div class="card-bg p-6 border-l-2 border-l-red-500">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-lg font-bold text-white">Caos na Borda</h3>
+                            <span class="text-red-500 font-mono text-xs">Sem Proteção</span>
                         </div>
-                        <div class="card-bg p-6 text-left flex items-center space-x-4">
-                            <svg class="w-8 h-8 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <p class="text-lg">Validação técnica completa da IA, causalidade e heurísticas.</p>
-                        </div>
-                        <div class="card-bg p-6 text-left flex items-center space-x-4">
-                           <svg class="w-8 h-8 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                           <p class="text-lg font-bold">MVP com tecnologia central robusta e pronta para escala.</p>
-                        </div>
-                    </div>
-                    <div class="card-bg p-2 flex justify-center items-center">
-                        <iframe 
-                            class="w-full aspect-video rounded-lg" 
-                            src="https://www.youtube.com/embed/-uEAJLTI8XM" 
-                            title="Demo Imunno System - Explicada" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            referrerpolicy="strict-origin-when-cross-origin" 
-                            allowfullscreen>
-                        </iframe>
+                        <p class="text-sm text-gray-500 mt-2">Hackers invadem câmeras e roteadores para criar Botnets, pois são "terras sem lei".</p>
                     </div>
                 </div>
             </div>
-             <div class="slide-counter text-xs text-gray-400">6 / 11</div>
+            <div class="slide-counter">02 / 10</div>
         </div>
-        
-        <div id="slide7" class="slide p-8">
-            <div class="max-w-6xl mx-auto text-center">
-                 <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">O Cenário Atual</h2>
-                 <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">Por que o Imunno Vence?</p>
-                 <p class="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">Concorrentes focam em "o quê". Nós focamos em "como" e "por quê".</p>
-                 
-                 <div class="mt-12 grid md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
-                    <div class="card-bg p-8 rounded-2xl text-left">
-                        <h3 class="text-2xl font-bold text-red-400">Defesas Tradicionais</h3>
-                        <p class="text-sm text-gray-500">(Wordfence, Sucuri, etc.)</p>
-                        <div class="mt-6 space-y-4 text-gray-300">
-                            <p class="flex items-start"><span class="text-red-400 font-bold mr-3">✗</span> <span><span class="font-semibold text-white">Reativas:</span> Baseadas em assinaturas (listas de malwares conhecidos).</span></p>
-                            <p class="flex items-start"><span class="text-red-400 font-bold mr-3">✗</span> <span><span class="font-semibold text-white">Cegas a Zero-Day:</span> Falham em detectar ataques "pacientes" ou que usam arquivos legítimos.</span></p>
-                            <p class="flex items-start"><span class="text-red-400 font-bold mr-3">✗</span> <span><span class="font-semibold text-white">Falsos Positivos:</span> Geram muito ruído ao bloquear ações legítimas de plugins.</span></p>
+
+        <div id="slide3" class="slide p-8 bg-black">
+            <div class="max-w-6xl mx-auto w-full">
+                <div class="text-center mb-16">
+                    <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-sky-500 mb-4">A Solução</h2>
+                    <p class="text-4xl md:text-6xl font-black tracking-tight brand-gradient">
+                        Segurança "Invisible-Edge"
+                    </p>
+                    <p class="mt-4 text-gray-400 max-w-2xl mx-auto">
+                        Um agente ultra-leve escrito em GoLang que protege o Kernel do dispositivo sem impactar a autonomia.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="card-bg p-8 hover:bg-white/5 transition duration-300">
+                        <div class="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                         </div>
-                    </div>
-
-                    <div class="card-bg p-8 rounded-2xl text-left border-2 border-sky-500 shadow-2xl shadow-sky-500/20">
-                        <h3 class="text-2xl font-bold brand-gradient">Imunno System</h3>
-                        <p class="text-sm text-gray-500">(Imunidade Adaptativa)</p>
-                        <div class="mt-6 space-y-4 text-gray-300">
-                            <p class="flex items-start"><span class="text-sky-400 font-bold mr-3">✓</span> <span><span class="font-semibold text-white">Adaptativo:</span> Focado em comportamento e **análise de causalidade**.</span></p>
-                            <p class="flex items-start"><span class="text-sky-400 font-bold mr-3">✓</span> <span><span class="font-semibold text-white">Pega Zero-Day:</span> Conecta eventos separados no tempo para revelar o ataque completo.</span></p>
-                            <p class="flex items-start"><span class="text-sky-400 font-bold mr-3">✓</span> <span><span class="font-semibold text-white">Preciso:</span> Entende o contexto, reduzindo falsos positivos e neutralizando a causa raiz.</span></p>
-                        </div>
-                    </div>
-                 </div>
-            </div>
-             <div class="slide-counter text-xs text-gray-400">7 / 11</div>
-        </div>
-
-        <div id="slide8" class="slide p-8">
-             <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                     <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">Mercado e Alcance</h2>
-                     <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">Um Mercado Exigente e Carente</p>
-                     <p class="mt-6 text-lg text-gray-300">Nosso foco inicial é o vasto mercado de PMEs no Brasil que utilizam WordPress, um nicho mal atendido por soluções de ponta.</p>
-                </div>
-                <div class="space-y-6">
-                    <div class="card-bg p-6">
-                         <h3 class="font-semibold text-white">Tamanho do Mercado</h3>
-                         <p class="text-sm text-gray-400">O mercado global de cibersegurança está em crescimento exponencial, e a necessidade de proteção para a infraestrutura web é crítica.</p>
-                    </div>
-                     <div class="card-bg p-6">
-                         <h3 class="font-semibold text-white">Necessidade Latente</h3>
-                         <p class="text-sm text-gray-400">A demanda por soluções que neutralizem ameaças zero-day e sejam acessíveis a empresas de todos os portes é clara e urgente.</p>
-                    </div>
-                     <div class="card-bg p-6">
-                         <h3 class="font-semibold text-white">Escalabilidade</h3>
-                         <p class="text-sm text-gray-400">Nossa arquitetura foi projetada para ser adaptável, permitindo a expansão futura para outros ambientes web além do WordPress.</p>
-                    </div>
-                </div>
-             </div>
-             <div class="slide-counter text-xs text-gray-400">8 / 11</div>
-        </div>
-
-        <div id="slide9" class="slide p-8 text-center">
-            <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">Clientes e Modelo de Negócio</h2>
-            <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">Modelo B2B Escalável</p>
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <div class="card-bg p-8">
-                    <svg class="w-12 h-12 mx-auto text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path></svg>
-                    <h3 class="mt-4 font-bold text-lg text-white">Principal: Provedores</h3>
-                    <p class="mt-2 text-sm text-gray-400">Parcerias com empresas de hospedagem para distribuição em massa. <span class="font-medium text-sky-300">Valor: Reduz tickets de suporte ('site hackeado') e cria nova receita premium.</span></p>
-                </div>
-                <div class="card-bg p-8">
-                    <svg class="w-12 h-12 mx-auto text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    <h3 class="mt-4 font-bold text-lg text-white">Secundário: Agências</h3>
-                    <p class="mt-2 text-sm text-gray-400">Agências de dev e freelancers que gerenciam múltiplos clientes. <span class="font-medium text-sky-300">Valor: Protege o portfólio, evita retrabalho e agrega valor ao contrato de manutenção.</span></p>
-                </div>
-                <div class="card-bg p-8">
-                    <svg class="w-12 h-12 mx-auto text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    <h3 class="mt-4 font-bold text-lg text-white">Modelo: SaaS</h3>
-                    <p class="mt-2 text-sm text-gray-400">Serviço de segurança premium (B2B), gerando receita recorrente e previsível através dos nossos parceiros.</p>
-                </div>
-            </div>
-            <div class="slide-counter text-xs text-gray-400">9 / 11</div>
-        </div>
-
-        <div id="slide10" class="slide p-8 text-center">
-             <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">O Time</h2>
-             <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">Fundador e Arquiteto da Solução</p>
-             <div class="mt-12 max-w-md mx-auto card-bg p-8">
-                <img class="w-32 h-32 rounded-full mx-auto object-cover" src="https://i.imgur.com/RAkM0ir.jpeg">
-                <h3 class="mt-6 text-2xl font-bold text-white">Rodrigo Freire</h3>
-                <p class="mt-2 text-sky-400 font-semibold">Fundador & Arquiteto de Software</p>
-                <p class="mt-4 text-gray-300 text-left">Obsessivo por criar uma solução de segurança de nível mundial, com a simplicidade e o custo adaptados à realidade brasileira. Desenvolvi toda a tecnologia central do Imunno, da IA à análise de causalidade, com foco em máxima eficiência.</p>
-             </div>
-             <div class="slide-counter text-xs text-gray-400">10 / 11</div>
-        </div>
-        
-        <div id="slide11" class="slide p-4 md:p-8">
-            <div class="max-w-7xl mx-auto flex flex-col h-full justify-between py-8">
-                <div class="text-center mb-6">
-                    <h2 class="text-sm font-bold uppercase tracking-widest text-sky-400">O Próximo Passo</h2>
-                    <p class="text-4xl md:text-5xl font-extrabold tracking-tight mt-2 italic">The Mission</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch flex-grow">
-                    
-                    <div class="card-bg p-8 flex flex-col justify-center border-l-4 border-l-sky-500 shadow-lg shadow-sky-500/10">
-                        <h3 class="text-gray-400 uppercase text-xs font-bold tracking-widest mb-2">Investimento Pre-Seed</h3>
-                        <p class="text-5xl font-black brand-gradient leading-none">R$ 360k</p>
-                        <p class="text-xl text-white font-medium mt-4">10% Equity</p>
-                        <div class="h-px bg-gray-800 my-6"></div>
-                        <p class="text-gray-400 text-sm leading-relaxed text-left">
-                            Foco em <span class="text-white">Runway de 12 meses</span> para transformar o MVP validado em um ecossistema Enterprise escalável e iniciar a tração comercial.
+                        <h3 class="text-xl font-bold mb-2">Eco-Throttling™</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Monitoramos o consumo em Watts via RAPL. Se um processo gasta muita energia ou age de forma suspeita, nós o congelamos, não apenas matamos.
                         </p>
                     </div>
 
-                    <div class="card-bg p-6 flex flex-col border-t-4 border-t-green-500">
-                        <h3 class="text-green-400 uppercase text-xs font-bold tracking-widest mb-4">Desenvolvimento V2 + Imunno Green</h3>
-                        <div class="space-y-4 text-left overflow-y-auto pr-2 max-h-[50vh]">
-                            <div>
-                                <h4 class="text-white font-bold text-sm mb-2 flex items-center">
-                                    <span class="w-2 h-2 bg-sky-500 rounded-full mr-2"></span> Infraestrutura de Escala
-                                </h4>
-                                <ul class="text-gray-400 text-xs space-y-1 ml-4 list-disc">
-                                    <li>Arquitetura eBPF para Zero Overhead</li>
-                                    <li>Ingestão Time-Series e mTLS Nativo</li>
-                                    <li>Orquestração com Ansible/K8s</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-bold text-sm mb-2 flex items-center">
-                                    <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span> Imunno Green (ESG)
-                                </h4>
-                                <ul class="text-gray-400 text-xs space-y-1 ml-4 list-disc">
-                                    <li>Eco-Throttling de processos não-vitais</li>
-                                    <li>Gerenciamento de energia a nível de hardware</li>
-                                    <li>Certificação de TI Sustentável</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-bold text-sm mb-2 flex items-center">
-                                    <span class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span> Security Hardening
-                                </h4>
-                                <ul class="text-gray-400 text-xs space-y-1 ml-4 list-disc">
-                                    <li>Auto-proteção do Agente (Anti-Tampering)</li>
-                                    <li>Integração HashiCorp Vault</li>
-                                    <li>Controle RBAC e Auditoria</li>
-                                </ul>
-                            </div>
+                    <div class="card-bg p-8 hover:bg-white/5 transition duration-300">
+                        <div class="w-12 h-12 bg-sky-500/10 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
                         </div>
+                        <h3 class="text-xl font-bold mb-2">Pegada de 0.07%</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Nossa arquitetura baseada em eventos (Netlink/Auditd) significa que o agente dorme 99% do tempo e só acorda quando necessário.
+                        </p>
                     </div>
 
-                    <div class="card-bg-darker p-6 flex flex-col border-r-4 border-r-purple-500 bg-gradient-to-br from-slate-950 to-purple-950/20">
-                        <h3 class="text-purple-400 uppercase text-xs font-bold tracking-widest mb-4">Pesquisa Futura (V3)</h3>
-                        <div class="space-y-6 text-left">
-                            <div class="relative pl-4 border-l border-purple-500/30">
-                                <h4 class="text-purple-100 font-bold text-sm mb-1 italic">🧬 Vida Artificial & Biomimética</h4>
-                                <p class="text-gray-400 text-[11px] leading-relaxed">
-                                    Sistemas que operam em Homeostase digital, gerando suas próprias simulações de defesa e evoluindo via Algoritmos Genéticos.
-                                </p>
-                            </div>
-                            <div class="relative pl-4 border-l border-purple-500/30 text-center py-4 bg-purple-500/5 rounded">
-                                <p class="text-purple-300 font-bold text-xs uppercase tracking-widest">A meta final:</p>
-                                <p class="text-white font-black text-lg">Um Organismo Digital Autônomo</p>
-                            </div>
+                    <div class="card-bg p-8 hover:bg-white/5 transition duration-300">
+                        <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                         </div>
-                    </div>
-                </div>
-
-                <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 border-t border-gray-800 pt-6">
-                    <p class="text-xl font-medium text-gray-300 italic">"Protegendo o presente, arquitetando o futuro."</p>
-                    <div class="flex gap-4">
-                        <span class="brand-bg-gradient px-4 py-2 rounded text-xs font-bold">contato@imunnosystem.com</span>
-                        <span class="bg-gray-800 px-4 py-2 rounded text-xs font-bold text-gray-300">WA: (69) 9 9278-2919</span>
+                        <h3 class="text-xl font-bold mb-2">Imunidade de Enxame</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Se um dispositivo detecta uma ameaça nova, ele gera uma "vacina" e imuniza a rede local inteira via protocolo P2P, sem depender da nuvem.
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="slide-counter text-xs text-gray-400">11 / 11</div>
+            <div class="slide-counter">03 / 10</div>
         </div>
 
+        <div id="slide4" class="slide p-8 bg-neutral-950">
+            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-purple-500 mb-4">Deep Tech</h2>
+                    <h3 class="text-4xl font-bold mb-6">Análise de Causalidade</h3>
+                    <p class="text-gray-400 mb-8">
+                        Não usamos assinaturas de vírus. Nós rastreamos a origem (pai) de cada processo. Se uma calculadora tentar abrir a internet, nós bloqueamos.
+                    </p>
+                    
+                    <div class="space-y-3 font-mono text-sm">
+                        <div class="flex items-center gap-3 text-gray-300">
+                            <span class="text-green-500">✔</span> Arquitetura Híbrida (eBPF + Netlink)
+                        </div>
+                        <div class="flex items-center gap-3 text-gray-300">
+                            <span class="text-green-500">✔</span> Compilação Estática (Roda em qualquer Linux)
+                        </div>
+                        <div class="flex items-center gap-3 text-gray-300">
+                            <span class="text-green-500">✔</span> Machine Learning na Nuvem, Determinismo na Borda
+                        </div>
+                    </div>
+                </div>
 
+                <div class="card-bg-darker p-6 font-mono text-xs md:text-sm overflow-hidden shadow-2xl">
+                    <div class="flex gap-2 mb-4">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div class="text-gray-500 mb-2"># Live Threat Detection Log</div>
+                    <div class="attack-tree text-gray-300">
+                        <div>
+                            <span class="text-blue-400">systemd (PID 1)</span>
+                            <div>
+                                <span class="text-blue-400">infotainment_service (Tesla OS)</span>
+                                <div>
+                                    <span class="text-white">spotify_player</span>
+                                    <div>
+                                        <span class="text-red-400 animate-pulse">/bin/sh (Shell Reverso)</span>
+                                        <div class="text-gray-500 mt-1 ml-4">
+                                            <span class="text-yellow-500">⚠ ALERTA:</span> Processo de música não deve abrir terminal.<br>
+                                            <span class="text-green-500">⚡ AÇÃO:</span> Processo congelado (Eco-Throttling).<br>
+                                            <span class="text-green-500">🔋 BATERIA:</span> Impacto 0.00%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-counter">04 / 10</div>
+        </div>
+
+        <div id="slide5" class="slide p-8 bg-black">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="text-center mb-16">
+                    <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-green-500 mb-4">Mercado Alvo</h2>
+                    <p class="text-4xl font-bold">Onde a Bateria Vale Ouro</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="card-bg p-8 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
+                            <svg class="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Automotivo</h3>
+                        <p class="text-xs font-bold text-sky-400 uppercase tracking-widest mb-4">EVs & Autônomos</p>
+                        <p class="text-gray-400 text-sm">Proteção contra ransomware em carros elétricos (Tesla, BYD) sem reduzir a autonomia de rodagem (Range Anxiety).</p>
+                    </div>
+
+                    <div class="card-bg p-8 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
+                            <svg class="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Agro IoT</h3>
+                        <p class="text-xs font-bold text-green-400 uppercase tracking-widest mb-4">Sensores Remotos</p>
+                        <p class="text-gray-400 text-sm">Estações meteorológicas e drones no meio da lavoura, operando com energia solar e processadores limitados.</p>
+                    </div>
+
+                    <div class="card-bg p-8 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
+                            <svg class="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">ISPs & Telecom</h3>
+                        <p class="text-xs font-bold text-purple-400 uppercase tracking-widest mb-4">Roteadores & ONUs</p>
+                        <p class="text-gray-400 text-sm">Impedir que roteadores domésticos virem zumbis em ataques DDoS, economizando banda do provedor.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-counter">05 / 10</div>
+        </div>
+
+        <div id="slide6" class="slide p-8 bg-neutral-950">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-8">Status Atual</h2>
+                
+                <div class="card-bg p-12 border border-green-500/30 shadow-[0_0_50px_-12px_rgba(34,197,94,0.2)]">
+                    <p class="text-gray-400 text-lg mb-4">Benchmark em Ataque Real (Massivo)</p>
+                    <div class="flex items-end justify-center gap-4">
+                        <span class="text-7xl md:text-9xl font-black text-white tracking-tighter">0.07%</span>
+                        <span class="text-xl md:text-2xl text-green-500 font-bold mb-4 md:mb-6">CPU Load</span>
+                    </div>
+                    <p class="mt-8 text-gray-400 max-w-xl mx-auto">
+                        Tecnologia validada em laboratório simulando ataques contínuos. Enquanto concorrentes travam o dispositivo, o Imunno permanece invisível.
+                    </p>
+                </div>
+            </div>
+            <div class="slide-counter">06 / 10</div>
+        </div>
+
+        <div id="slide7" class="slide p-8 bg-black">
+             <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold mb-12 text-center">Modelo de Negócio (B2B)</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card-bg p-8 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Licenciamento OEM</h3>
+                            <p class="text-gray-400 mt-2">Para fabricantes de Hardware.</p>
+                        </div>
+                        <div class="mt-8">
+                            <p class="text-3xl font-mono text-sky-400">$2 / ano</p>
+                            <p class="text-xs text-gray-500 uppercase mt-1">Por dispositivo ativado</p>
+                        </div>
+                    </div>
+                    <div class="card-bg p-8 flex flex-col justify-between border border-green-500/20">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">SaaS Enterprise</h3>
+                            <p class="text-gray-400 mt-2">Para Gestão de Frotas de IoT.</p>
+                        </div>
+                        <div class="mt-8">
+                            <p class="text-3xl font-mono text-green-400">Recorrente</p>
+                            <p class="text-xs text-gray-500 uppercase mt-1">Dashboard de Monitoramento Central</p>
+                        </div>
+                    </div>
+                </div>
+             </div>
+             <div class="slide-counter">07 / 10</div>
+        </div>
+
+        <div id="slide8" class="slide p-8 bg-neutral-950">
+             <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-1/3">
+                    <div class="w-48 h-48 rounded-2xl overflow-hidden border-2 border-gray-800 mx-auto bg-gray-900">
+                        <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500" src="https://i.imgur.com/RAkM0ir.jpeg" alt="Rodrigo Freire">
+                    </div>
+                </div>
+                <div class="md:w-2/3 text-center md:text-left">
+                    <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-sky-500 mb-2">O Arquiteto</h2>
+                    <h3 class="text-3xl font-bold text-white">Rodrigo Freire</h3>
+                    <p class="text-lg text-gray-400 mt-2">Founder & Lead Engineer</p>
+                    
+                    <p class="mt-6 text-gray-300 leading-relaxed">
+                        Desenvolvedor Full-Stack focado em performance extrema. 
+                        Visionário da "Segurança Sustentável", unindo Cyber-Defense com Eficiência Energética.
+                        Criador do motor de heurística determinística do Imunno.
+                    </p>
+
+                    <div class="mt-8 flex gap-4 justify-center md:justify-start">
+                        <span class="text-xs font-mono px-3 py-1 bg-gray-900 rounded border border-gray-800 text-sky-400">GoLang</span>
+                        <span class="text-xs font-mono px-3 py-1 bg-gray-900 rounded border border-gray-800 text-sky-400">eBPF</span>
+                        <span class="text-xs font-mono px-3 py-1 bg-gray-900 rounded border border-gray-800 text-sky-400">Assembly</span>
+                        <span class="text-xs font-mono px-3 py-1 bg-gray-900 rounded border border-gray-800 text-sky-400">Linux Kernel</span>
+                    </div>
+                </div>
+             </div>
+             <div class="slide-counter">08 / 10</div>
+        </div>
+
+        <div id="slide9" class="slide p-8 bg-black">
+            <div class="max-w-5xl mx-auto w-full">
+                <h2 class="text-center text-4xl font-bold mb-12">Roadmap Estratégico</h2>
+                <div class="relative border-l border-gray-800 ml-4 md:ml-0 space-y-12">
+                    
+                    <div class="relative pl-8 md:pl-12">
+                        <div class="absolute -left-1.5 top-2 w-3 h-3 bg-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
+                        <h3 class="text-xl font-bold text-white">Fase 1: Fundação (Concluído)</h3>
+                        <p class="text-gray-400 mt-2 max-w-2xl">Desenvolvimento do Core em GoLang. Validação de performance (0.07%). Prova de Conceito de Causalidade.</p>
+                    </div>
+
+                    <div class="relative pl-8 md:pl-12">
+                        <div class="absolute -left-1.5 top-2 w-3 h-3 bg-sky-500 rounded-full animate-pulse"></div>
+                        <h3 class="text-xl font-bold text-white">Fase 2: The Edge Pivot (Atual)</h3>
+                        <p class="text-gray-400 mt-2 max-w-2xl">Portabilidade para ARM/MIPS. Implementação do monitoramento de energia (RAPL). Integração com Hardware Watchdogs.</p>
+                    </div>
+
+                    <div class="relative pl-8 md:pl-12">
+                        <div class="absolute -left-1.5 top-2 w-3 h-3 bg-gray-700 rounded-full"></div>
+                        <h3 class="text-xl font-bold text-gray-500">Fase 3: Swarm Immunity</h3>
+                        <p class="text-gray-600 mt-2 max-w-2xl">Implementação de defesa P2P (Gossip Protocol) para redes IoT locais desconectadas.</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="slide-counter">09 / 10</div>
+        </div>
+
+        <div id="slide10" class="slide p-8 text-center bg-gradient-to-b from-black to-neutral-900">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-5xl md:text-7xl font-black tracking-tighter mb-8">
+                    O Futuro é <span class="text-green-500">Eficiente.</span>
+                </h2>
+                <p class="text-xl text-gray-400 mb-12">
+                    Estamos construindo a infraestrutura de segurança para a próxima geração da internet.
+                    <br>Junte-se a nós.
+                </p>
+
+                <div class="bg-gray-900/50 border border-gray-800 p-8 rounded-2xl inline-block backdrop-blur-sm">
+                    <p class="text-sm font-bold uppercase tracking-widest text-sky-500 mb-4">Contato Direto</p>
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="text-left">
+                            <p class="text-xs text-gray-500 mb-1">Email</p>
+                            <p class="text-white font-mono">contato@imunnosystem.com</p>
+                        </div>
+                        <div class="w-px h-10 bg-gray-800 hidden md:block"></div>
+                        <div class="text-left">
+                            <p class="text-xs text-gray-500 mb-1">WhatsApp / Signal</p>
+                            <p class="text-white font-mono">+55 69 99278-2919</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 opacity-30 grayscale">
+                    <img src="https://i.imgur.com/JlJA62c.png" alt="Logo Footer" class="h-8 mx-auto">
+                    <p class="text-xs text-gray-600 mt-4">© 2026 Imunno System. All systems operational.</p>
+                </div>
+            </div>
+            <div class="slide-counter">10 / 10</div>
+        </div>
+
+    </div>
+
+    <script>
+        // Script simples para ocultar a seta de scroll no último slide
+        const container = document.getElementById('deck-container');
+        const arrow = document.querySelector('.arrow-down');
+        
+        container.addEventListener('scroll', () => {
+            if (container.scrollTop > 100) {
+                arrow.style.opacity = '0';
+            } else {
+                arrow.style.opacity = '1';
+            }
+        });
+    </script>
+</body>
+</html>
