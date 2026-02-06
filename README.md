@@ -2,6 +2,8 @@
 
 ![Version](https://img.shields.io/badge/Version-12.0.0--IoT-blue?style=for-the-badge&logo=semver) ![Platform](https://img.shields.io/badge/Platform-ARM64%20|%20MIPS%20|%20x86-orange?style=for-the-badge&logo=linux) ![Energy](https://img.shields.io/badge/Energy-Eco--Throttling™-green?style=for-the-badge&logo=energy) ![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)
 
+[![Ver Pitch Deck](https://img.shields.io/badge/▶_Ver_Pitch_Deck-Apresentação_Interativa-38bdf8?style=for-the-badge&logo=google-chrome&logoColor=white)](https://rodrigoffreir3.github.io/imunno-pitch/)
+
 > **"Segurança Máxima. Consumo Zero."**
 > O primeiro WAF Inteligente e Sistema de Defesa de Borda para **IoT Crítico** e **Sistemas Veiculares**.
 > *Registered Software INPI Process: 512025006506-0.*
@@ -69,7 +71,7 @@ Estamos construindo a próxima geração de defesa autônoma.
 
 O Imunno System é disponibilizado via licenciamento **OEM** para fabricantes de hardware ou **SaaS Enterprise** para gestão de frotas.
 
-📞 Contato & Investidores
+## 📞 Contato & Investidores
 Este repositório contém a documentação pública do Imunno System. O código fonte é proprietário. Para acesso ao Pitch Deck completo, demonstrações técnicas ou propostas de licenciamento:
 
 Email: contato@imunnosystem.com
