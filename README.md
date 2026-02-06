@@ -78,7 +78,10 @@ func main() {
         NetworkMode: imunno.OfflineFirst,      // Resiliência a falhas de conexão
     })
 
-📞 Contato & Investidores
+    agent.StartProtection() // Inicia eBPF hooks e auditd listeners
+}
+
+## 📞 Contato & Investidores
 Este repositório contém a documentação pública do Imunno System. O código fonte é proprietário. Para acesso ao Pitch Deck completo, demonstrações técnicas ou propostas de licenciamento:
 
 Email: contato@imunnosystem.com 
@@ -86,6 +89,3 @@ Email: contato@imunnosystem.com
 Rodrigo Freire: Founder & Lead Engineer 
 
 © 2026 Imunno System. All systems operational.
-
-    agent.StartProtection() // Inicia eBPF hooks e auditd listeners
-}
